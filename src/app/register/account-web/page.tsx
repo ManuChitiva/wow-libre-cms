@@ -1,20 +1,21 @@
 "use client";
 
-import PageCounter from "@/components/utilities/counter";
-import NavbarMinimalist from "@/components/navbar-minimalist";
-import TitleWow from "@/components/utilities/serverTitle";
-import { useUserContext } from "@/context/UserContext";
-import { useRouter } from "next/navigation";
-import React, { ChangeEvent, useEffect, useState } from "react";
-import Swal from "sweetalert2";
-import "../style.css";
 import { registerAccountWeb } from "@/api/account/register";
+import Footer from "@/components/footer";
+import NavbarMinimalist from "@/components/navbar-minimalist";
+import PageCounter from "@/components/utilities/counter";
+import LoadingSpinner from "@/components/utilities/loading-spinner";
+import TitleWow from "@/components/utilities/serverTitle";
+import AlertComponent from "@/components/utilities/show-alert";
+import { GOOGLE_API_KEY_RE_CAPTCHA } from "@/configs/configs";
+import { useUserContext } from "@/context/UserContext";
 import { AccountWebRequestDto } from "@/model/model";
 import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import LoadingSpinner from "@/components/utilities/loading-spinner";
-import AlertComponent from "@/components/utilities/show-alert";
-import Footer from "@/components/footer";
+import Swal from "sweetalert2";
+import "../style.css";
 
 const AccountWeb = () => {
   const { user, setUser } = useUserContext();
@@ -29,7 +30,7 @@ const AccountWeb = () => {
   const router = useRouter();
   const { t } = useTranslation();
 
-  const siteKey = "6LcbSqcqAAAAAEQ0ODkqHr7WT1OJ9RwQfA1D9U1x";
+  const siteKey = GOOGLE_API_KEY_RE_CAPTCHA;
 
   useEffect(() => {
     const script = document.createElement("script");
