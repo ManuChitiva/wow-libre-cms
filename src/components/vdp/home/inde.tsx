@@ -103,7 +103,6 @@ const Vdp = () => {
         serverName={serverName}
         youtubeUrl={vdpModel.youtube_url}
       />
-      <NativeBanners />
       <ServerInformationVdp isSubscribed={isSubscribed} t={t} />
       {token && (
         <ServerRegister
