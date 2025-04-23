@@ -1,5 +1,4 @@
 "use client";
-import AdultsBanner from "@/components/adversing/adults";
 import SingleCard from "@/components/contributions/card";
 import NavbarAuthenticated from "@/components/navbar-authenticated";
 import Link from "next/link";
