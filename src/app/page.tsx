@@ -17,7 +17,6 @@ const Home = () => {
       <Navbar />
       <Advertising />
 
-      <AdIframe />
       <Information />
       <PricingPlans />
       <ServerExperience />
@@ -29,7 +28,6 @@ const Home = () => {
       <ContributionsHome />
 
       <Subscription />
-      <NativeBanners />
     </>
   );
 };

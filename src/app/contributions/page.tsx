@@ -205,7 +205,6 @@ const Contributions = () => {
           ))}
         </div>
       </section>
-      <AdultsBanner />
     </div>
   );
 };
