@@ -6,13 +6,13 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 const banners = [
   {
     image:
-      "https://static.wixstatic.com/media/5dd8a0_5811c889364640b6beb9511ebfa80c46~mv2.webp",
-    alt: "banner advertising for discount",
+      "https://static.wixstatic.com/media/5dd8a0_6d93485a4fdc487fbcb817551ebae3a8~mv2.jpg",
+    alt: "Store Discount",
   },
   {
     image:
-      "https://static.wixstatic.com/media/5dd8a0_f5f5bcd55a3a4260ad852fb5c784a67f~mv2.webp",
-    alt: "banner advertising for discount",
+      "https://static.wixstatic.com/media/5dd8a0_128b337290694ac7b65fa74b7e513744~mv2.jpg",
+    alt: "Store Discount",
   },
 ];
 
@@ -46,7 +46,7 @@ const AdvertisingStore = () => {
               style={{
                 width: "100%",
                 height: "100%",
-                maxHeight: "35rem",
+                maxHeight: "45rem",
               }}
               className="rounded-2xl"
             />
