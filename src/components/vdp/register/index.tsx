@@ -67,6 +67,7 @@ const ServerRegister: React.FC<ServerRegisterProps> = ({
           password: password,
           realm_name: serverName,
           expansion: expansion,
+          game_mail: username,
         },
         jwt || ""
       );
