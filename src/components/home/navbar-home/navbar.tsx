@@ -199,7 +199,7 @@ const Navbar = () => {
           <Link
             className="category-link hover:text-gray-400 font-serif"
             target="_blank"
-            href="https://foro.wowlibre.com/"
+            href={webProps.comunityUrl}
           >
             {t("navbar.sections.position-two")}
           </Link>
