@@ -98,10 +98,13 @@
             },
             "account-game": {
                 "realm-txt": "Reino",
-                "select-server": "Escolha seu reino",
-                "username-txt": "Nome de Usuário",
-                "username-placeholder": "Digite o nome de usuário",
-                "title-server-message": "Escolha um nome de usuário que te represente e brilhe na nossa comunidade! Este será seu selo pessoal no jogo.",
+                "select-server": "Selecione um reino",
+                "username-txt": "Nome de usuário",
+                "username-placeholder": "Digite seu nome de usuário",
+                "title-server-message": "Escolha um nome de usuário que represente você e brilhe em nossa comunidade! Ele será sua marca pessoal no jogo.",
+                "email-game-placeholder": "Digite seu e-mail do jogo",
+                "email-game-disclaimer": "Nesta expansão, você deverá usar seu e-mail para fazer login no jogo.",
+                "email-game-txt": "E-mail",
                 "button": {
                     "btn-primary": "Continuar",
                     "btn-secondary": "Voltar"

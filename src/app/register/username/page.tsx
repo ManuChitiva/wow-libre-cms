@@ -200,7 +200,7 @@ const AccountIngame = () => {
                 htmlFor="usernameForm"
                 className="mb-2 registration-container-form-label text-lg md:text-xl lg:text-2xl"
               >
-                Email
+                {t("register.section-page.account-game.email-game-txt")}
               </label>
 
               <input
@@ -208,13 +208,14 @@ const AccountIngame = () => {
                 className="mb-3 px-4 py-2 border rounded-md text-black registration-input text-base md:text-lg lg:text-xl"
                 type="text"
                 maxLength={60}
-                placeholder={"Ingrese email de juego"}
+                placeholder={t(
+                  "register.section-page.account-game.email-game-placeholder"
+                )}
                 value={gameMail}
                 onChange={handleGameMailChange}
               />
               <p className="text-lg text-gray-300 mt-1">
-                En esta expansión, deberás usar tu correo electrónico para
-                iniciar sesión dentro del juego.
+                {t("register.section-page.account-game.email-game-disclaimer")}
               </p>
             </div>
           )}

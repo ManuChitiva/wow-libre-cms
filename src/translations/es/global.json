@@ -104,6 +104,9 @@
                 "username-txt": "Usuario",
                 "username-placeholder": "Ingrese el nombre de usuario",
                 "title-server-message": "¡Elige un nombre de usuario que te represente y brille en nuestra comunidad! Este será tu sello personal en el juego.",
+                "email-game-placeholder": "Ingrese su correo electronico para el juego",
+                "email-game-disclaimer": "En esta expansión, deberás usar tu correo electrónico para iniciar sesión dentro del juego.",
+                "email-game-txt": "Correo electronico",
                 "button": {
                     "btn-primary": "Continuar",
                     "btn-secondary": "Volver"

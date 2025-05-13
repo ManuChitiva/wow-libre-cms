@@ -98,10 +98,13 @@
             },
             "account-game": {
                 "realm-txt": "Realm",
-                "select-server": "Choose your realm",
+                "select-server": "Select a realm",
                 "username-txt": "Username",
-                "username-placeholder": "Enter the username",
+                "username-placeholder": "Enter your username",
                 "title-server-message": "Choose a username that represents you and shines in our community! This will be your personal mark in the game.",
+                "email-game-placeholder": "Enter your game email address",
+                "email-game-disclaimer": "In this expansion, you must use your email address to log into the game.",
+                "email-game-txt": "Email address",
                 "button": {
                     "btn-primary": "Continue",
                     "btn-secondary": "Back"
