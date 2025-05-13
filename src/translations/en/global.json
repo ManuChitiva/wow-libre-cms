@@ -97,7 +97,8 @@
                 }
             },
             "account-game": {
-                "select-server": "Choose your server",
+                "realm-txt": "Realm",
+                "select-server": "Choose your realm",
                 "username-txt": "Username",
                 "username-placeholder": "Enter the username",
                 "title-server-message": "Choose a username that represents you and shines in our community! This will be your personal mark in the game.",

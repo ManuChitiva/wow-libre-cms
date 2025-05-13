@@ -20,6 +20,7 @@ export interface AccountGameRequestDto {
   password: string;
   realm_name: string;
   expansion: string;
+  game_mail: string;
 }
 
 export interface AccountWebRequestDto {

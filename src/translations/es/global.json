@@ -99,7 +99,8 @@
                 }
             },
             "account-game": {
-                "select-server": "Seleccione un servidor",
+                "realm-txt": "Reino",
+                "select-server": "Seleccione un reino",
                 "username-txt": "Usuario",
                 "username-placeholder": "Ingrese el nombre de usuario",
                 "title-server-message": "¡Elige un nombre de usuario que te represente y brille en nuestra comunidad! Este será tu sello personal en el juego.",

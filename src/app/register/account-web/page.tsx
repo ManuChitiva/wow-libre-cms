@@ -171,9 +171,7 @@ const AccountWeb = () => {
       setIsSubmitting(false);
     }
 
-    router.push(
-      `/congrats?email=${user.email}&country=${user.country}&phone=${user.cell_phone}`
-    );
+    router.push(`/register/username`);
   };
 
   const handleVolverClick = () => {

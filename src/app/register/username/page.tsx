@@ -20,10 +20,11 @@ const AccountIngame = () => {
   const { user, setUser } = useUserContext();
   const [userName, setUsername] = useState("");
   const [servers, setServers] = useState<ServerModel[]>([]);
+  const [gameMail, setGameMail] = useState("");
   const [selectedServer, setSelectedServer] = useState<{
     name: string;
     expansion: string;
-  } | null>(null);
+  }>();
   const router = useRouter();
   const { t } = useTranslation();
 
@@ -59,6 +60,10 @@ const AccountIngame = () => {
 
   const handleUserNameChange = (event: ChangeEvent<HTMLInputElement>) => {
     setUsername(event.target.value);
+  };
+
+  const handleGameMailChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setGameMail(event.target.value);
   };
 
   const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -119,6 +124,7 @@ const AccountIngame = () => {
         username: userName,
         server: selectedServer.name,
         expansion: selectedServer.expansion,
+        email: gameMail,
       });
     }
     router.push("/register/account-ingame");
@@ -148,7 +154,7 @@ const AccountIngame = () => {
               htmlFor="expansionSelect"
               className="mb-2 registration-container-form-label text-lg md:text-xl lg:text-2xl"
             >
-              Servidor
+              {t("register.section-page.account-game.realm-txt")}
             </label>
             <select
               id="expansionSelect"
@@ -161,8 +167,7 @@ const AccountIngame = () => {
               </option>
               {servers.map((server) => (
                 <option key={server.id} value={server.name}>
-                  {server.name} - {server.exp_name}{" "}
-                  {/* Mostrar ambos en el select */}
+                  {server.name} - {server.exp_name}
                 </option>
               ))}
             </select>
@@ -189,6 +194,30 @@ const AccountIngame = () => {
               onChange={handleUserNameChange}
             />
           </div>
+          {Number(selectedServer?.expansion) > 2 && (
+            <div className="form-group">
+              <label
+                htmlFor="usernameForm"
+                className="mb-2 registration-container-form-label text-lg md:text-xl lg:text-2xl"
+              >
+                Email
+              </label>
+
+              <input
+                id="usernameForm"
+                className="mb-3 px-4 py-2 border rounded-md text-black registration-input text-base md:text-lg lg:text-xl"
+                type="text"
+                maxLength={60}
+                placeholder={"Ingrese email de juego"}
+                value={gameMail}
+                onChange={handleGameMailChange}
+              />
+              <p className="text-lg text-gray-300 mt-1">
+                En esta expansión, deberás usar tu correo electrónico para
+                iniciar sesión dentro del juego.
+              </p>
+            </div>
+          )}
 
           <PageCounter currentSection={1} totalSections={2} />
           <button

@@ -85,6 +85,7 @@ const AccountIngame = () => {
           password: password,
           realm_name: user.server || "",
           expansion: user.expansion || "",
+          game_mail: user.email,
         },
         jwt || ""
       );
@@ -104,7 +105,7 @@ const AccountIngame = () => {
   };
 
   const handleVolverClick = () => {
-    router.back();
+    router.push("/accounts");
   };
 
   return (
