@@ -16,7 +16,7 @@ import { ServerModel } from "@/model/model";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useTranslation } from "react-i18next";
 
-const AccountIngame = () => {
+const AccountUsernameIngame = () => {
   const { user, setUser } = useUserContext();
   const [userName, setUsername] = useState("");
   const [servers, setServers] = useState<ServerModel[]>([]);
@@ -269,4 +269,4 @@ const AccountIngame = () => {
   );
 };
 
-export default AccountIngame;
+export default AccountUsernameIngame;
