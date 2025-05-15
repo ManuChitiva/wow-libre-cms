@@ -1,11 +1,8 @@
-import { claimPromotion, getPromotions } from "@/api/promotions";
-import { PromotionsModel } from "@/model/model";
-import Link from "next/link";
+import { getTeleports, teleport } from "@/api/teleport";
+import { InternalServerError } from "@/dto/generic";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import LoadingSpinner from "../utilities/loading-spinner";
-import { InternalServerError } from "@/dto/generic";
-import { getTeleports, teleport } from "@/api/teleport";
 import { Teleport } from "@/model/Teleport";
 
 interface TeleportsProps {
