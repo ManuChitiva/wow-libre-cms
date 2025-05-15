@@ -1,6 +1,6 @@
 import { BASE_URL_CORE } from "@/configs/configs";
 import { GenericResponseDto, InternalServerError } from "@/dto/generic";
-import { Teleport } from "@/model/Teleport";
+import { Teleport } from "@/model/teleport";
 import { v4 as uuidv4 } from "uuid";
 
 export const getTeleports = async (
