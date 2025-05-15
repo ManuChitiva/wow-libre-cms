@@ -1,9 +1,9 @@
 import { getTeleports, teleport } from "@/api/teleports";
 import { InternalServerError } from "@/dto/generic";
+import { Teleport } from "@/model/teleport";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import LoadingSpinner from "../utilities/loading-spinner";
-import { Teleport } from "@/model/teleport";
 
 interface TeleportsProps {
   classId: number;

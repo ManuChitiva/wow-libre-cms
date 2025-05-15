@@ -1,0 +1,83 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-inline: auto;
+}
+
+.registration-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 800px;
+  padding: 20px;
+  min-height: 600px;
+  margin-top: 2rem;
+}
+
+.registration-container-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.form-group-flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  width: 100%;
+  max-width: 65%;
+  justify-content: start;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 1rem;
+}
+
+.registration-container-form-label {
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.registration-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.button-registration {
+  width: 100%;
+  max-width: 500px;
+  background-color: #202b4d;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.button-registration:hover {
+  background-color: #304994;
+  color: #fff;
+}
+
+.p-1 {
+  padding: 1px;
+}
+
+.select-container .react-select__control {
+  border: none; /* Elimina el borde del Select */
+  box-shadow: none; /* Elimina la sombra del Select si la hay */
+}
+
+.checkbox-custom {
+  width: 1.3rem; /* Ancho deseado */
+  height: 1.3rem; /* Altura deseada */
+  margin-right: 0.6rem; /* Espacio entre el checkbox y el texto */
+}

@@ -40,7 +40,7 @@ import { AccountDetailDto, Character, UserDetailDto } from "@/model/model";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import Cookies from "js-cookie";
 import { useTranslation } from "react-i18next";
-import Teleports from "@/components/teleport";
+import Teleports from "@/components/teleports";
 
 const AccountDetail = () => {
   const searchParams = useSearchParams();
