@@ -171,7 +171,7 @@ const AccountWeb = () => {
       setIsSubmitting(false);
     }
 
-    router.push(`/register/username`);
+    router.push(`/register/username?showWelcome=true`);
   };
 
   const handleVolverClick = () => {

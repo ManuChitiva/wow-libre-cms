@@ -14,7 +14,7 @@ import { useTranslation } from "react-i18next";
 import { ServerModel } from "@/model/model";
 import { getServers } from "@/api/account/realms";
 import { useUserContext } from "@/context/UserContext";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const AccountIngame = () => {
   const { user, setUser } = useUserContext();
@@ -29,6 +29,34 @@ const AccountIngame = () => {
   const { t } = useTranslation();
 
   useAuth(t("errors.message.expiration-session"));
+
+  const searchParams = useSearchParams();
+  const disclaimerParam = searchParams.get("showWelcome");
+  const disclaimer = disclaimerParam === "true";
+
+  useEffect(() => {
+    if (disclaimer) {
+      Swal.fire({
+        title: `<span style="font-family: 'Cinzel', serif; font-size: 2rem; color: #FFD700; text-shadow: 2px 2px 4px #000000;">
+    ${t("register.section-page.account-game.show-welcome.title")}
+  </span>`,
+        html: `
+    <div style="text-align: center; color: #E6E6E6; font-family: 'Merriweather', serif; font-size: 1.5rem; line-height: 1.5; margin-top: 10px;">
+      <p>${t("register.section-page.account-game.show-welcome.description")}</p>
+      
+    </div>
+    <img src="https://static.wixstatic.com/media/5dd8a0_87f6b8f5c91343c3823fd351dcc8798d~mv2.webp" alt="Símbolo WoW" style="margin-top: 20px; width: 100px; height: 100px; border-radius: 12px; box-shadow: 0 0 15px #FFD700; display: block; margin-left: auto; margin-right: auto;" />
+  `,
+        background: "radial-gradient(circle, #0B1218 0%, #001020 100%)",
+        color: "#FFD700",
+        confirmButtonText: "OK",
+        confirmButtonColor: "#1E90FF",
+        showCloseButton: true,
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+      });
+    }
+  }, [disclaimer, t]);
 
   useEffect(() => {
     const fetchServers = async () => {
@@ -131,7 +159,7 @@ const AccountIngame = () => {
   };
 
   const handleVolverClick = () => {
-    router.back();
+    router.push("/accounts");
   };
 
   return (
@@ -197,14 +225,14 @@ const AccountIngame = () => {
           {Number(selectedServer?.expansion) > 2 && (
             <div className="form-group">
               <label
-                htmlFor="usernameForm"
+                htmlFor="emailGameForm"
                 className="mb-2 registration-container-form-label text-lg md:text-xl lg:text-2xl"
               >
                 {t("register.section-page.account-game.email-game-txt")}
               </label>
 
               <input
-                id="usernameForm"
+                id="emailGameForm"
                 className="mb-3 px-4 py-2 border rounded-md text-black registration-input text-base md:text-lg lg:text-xl"
                 type="text"
                 maxLength={60}

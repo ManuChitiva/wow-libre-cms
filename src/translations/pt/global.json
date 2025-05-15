@@ -105,6 +105,10 @@
                 "email-game-placeholder": "Digite seu e-mail do jogo",
                 "email-game-disclaimer": "Nesta expansão, você deverá usar seu e-mail para fazer login no jogo.",
                 "email-game-txt": "E-mail",
+                "show-welcome": {
+                    "title": "Bem-vindo a Azeroth!",
+                    "description": "Agora que você possui uma conta web, precisa criar uma conta de jogo. Essa conta será usada para acessar o cliente do World of Warcraft."
+                },
                 "button": {
                     "btn-primary": "Continuar",
                     "btn-secondary": "Voltar"
@@ -485,6 +489,11 @@
                 "title": "⚔️ Escolha o seu campeão! ⚔️",
                 "subtitle": "Aproveite as ofertas lendárias",
                 "text": "Teste sua sorte e fortaleça sua aventura com promoções épicas! Não perca esta oportunidade!"
+            },
+            "teleport": {
+                "title": "⚔️ Escolhe o teu destino, Campeão! ⚔️",
+                "subtitle": "O teleport está disponível para ti",
+                "text": "Ativa-o agora e viaja sem limites pelo mundo!"
             }
         },
         "errors": {
@@ -510,7 +519,8 @@
             "var6": "Premium",
             "var7": "Promoções",
             "var8": "Roleta",
-            "var9": "Contas"
+            "var9": "Portal",
+            "var10": "Contas"
         }
     },
     "support": {
@@ -1269,6 +1279,35 @@
                     }
                 }
             }
+        }
+    },
+    "teleport": {
+        "empty": {
+            "title": "Atualmente não há teleports configurados",
+            "description": "Não te preocupes! Entra em contacto com o suporte para mais informações.",
+            "disclaimer": "O teleport é uma funcionalidade premium que te permite deslocar-te rapidamente para diferentes zonas do mapa.",
+            "cards": {
+                "card-one": {
+                    "title": "Ficaste preso numa zona e não consegues sair?",
+                    "description": "Com o teleport, esquece o risco de ficares preso em locais perigosos ou de difícil acesso."
+                },
+                "card-two": {
+                    "title": "Nenhum teleport disponível?",
+                    "description": "Fala com o suporte para saberes mais sobre a disponibilidade de teleports no teu servidor."
+                }
+            }
+        },
+        "available": {
+            "description": "Usa o teleport para te deslocares rapidamente até à zona que quiseres.",
+            "btn-txt": "Ativar"
+        },
+        "pagination": {
+            "next": "Seguinte",
+            "previous": "Anterior"
+        },
+        "success": {
+            "title": "Personagem teletransportado com sucesso!",
+            "text": "O teletransporte foi ativado corretamente!"
         }
     }
 }

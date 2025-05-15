@@ -33,6 +33,7 @@ const Page = () => {
   const [searchUsername, setUsername] = useState<string>("");
   const [searchServer, setSearchServer] = useState<string>("");
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
+  const [isUserShowWelcome, setUserShowWelcome] = useState<boolean>(false);
 
   useAuth(t("errors.message.expiration-session"));
 
@@ -54,6 +55,7 @@ const Page = () => {
         setAccounts(fetchedAccounts.accounts);
         setTotalPages(fetchedAccounts.size);
         setHasAccount(fetchedAccounts.size > 0);
+        setUserShowWelcome(fetchedAccounts.size > 0);
         setLoading(false);
       } catch (error: any) {
         if (error instanceof InternalServerError) {
@@ -200,7 +202,6 @@ const Page = () => {
   }
 
   const accountMaximus = accounts && accounts.length > LimitAccountRegister;
-
   return (
     <div className="contenedor dark h-screen-md select-none ">
       <NavbarAuthenticated />
@@ -255,7 +256,12 @@ const Page = () => {
                   >
                     <li>
                       <Link
-                        href="/register/username"
+                        href={{
+                          pathname: "/register/username",
+                          query: isUserShowWelcome
+                            ? { showWelcome: "false" }
+                            : { showWelcome: "true" },
+                        }}
                         className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                       >
                         {t("account.with-accounts.txt-create-account")}

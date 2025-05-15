@@ -105,6 +105,10 @@
                 "email-game-placeholder": "Enter your game email address",
                 "email-game-disclaimer": "In this expansion, you must use your email address to log into the game.",
                 "email-game-txt": "Email address",
+                "show-welcome": {
+                    "title": "Welcome to Azeroth!",
+                    "description": "Now that you have a web account, you need to create a game account. This account will be used to log in to the World of Warcraft client."
+                },
                 "button": {
                     "btn-primary": "Continue",
                     "btn-secondary": "Back"
@@ -485,6 +489,11 @@
                 "title": "⚔️ Choose Your Champion! ⚔️",
                 "subtitle": "Take advantage of legendary offers",
                 "text": "Test your luck and power up your adventure with epic promotions! Don't miss this opportunity!"
+            },
+            "teleport": {
+                "title": "⚔️ Choose your destiny, Champion! ⚔️",
+                "subtitle": "Teleport is now available for you",
+                "text": "Activate it now and travel freely across the world!"
             }
         },
         "errors": {
@@ -510,7 +519,8 @@
             "var6": "Premium",
             "var7": "Promotions",
             "var8": "Roulette",
-            "var9": "Accounts"
+            "var9": "Portal",
+            "var10": "Accounts"
         }
     },
     "support": {
@@ -1269,6 +1279,35 @@
                     }
                 }
             }
+        }
+    },
+    "teleport": {
+        "empty": {
+            "title": "No teleports are currently configured",
+            "description": "Don’t worry! Contact support for more information.",
+            "disclaimer": "Teleport is a premium feature that lets you travel quickly to different areas of the map.",
+            "cards": {
+                "card-one": {
+                    "title": "Stuck in an area and can't get out?",
+                    "description": "With teleport, forget about getting trapped in dangerous or hard-to-reach places."
+                },
+                "card-two": {
+                    "title": "No teleport available?",
+                    "description": "Contact support for more information about teleport availability on your server."
+                }
+            }
+        },
+        "available": {
+            "description": "Use teleport to travel quickly to the area of your choice.",
+            "btn-txt": "Activate"
+        },
+        "pagination": {
+            "next": "Next",
+            "previous": "Previous"
+        },
+        "success": {
+            "title": "Character teleported successfully!",
+            "text": "Teleportation has been activated correctly!"
         }
     }
 }
