@@ -163,12 +163,12 @@ const Store = () => {
                                   className="text-orange-300 font-bold"
                                   style={{ fontSize: "1.5rem" }}
                                 >
-                                  {`$${Math.floor(
+                                  {`${Math.floor(
                                     product.discount_price
                                   ).toLocaleString()} Points`}
                                 </p>
                                 <p className="line-through text-gray-500">
-                                  {`$${product.price.toLocaleString()} Points`}
+                                  {`${product.price.toLocaleString()} Points`}
                                 </p>
                               </>
                             )}
@@ -180,7 +180,7 @@ const Store = () => {
                           >
                             {product.use_points === false
                               ? `$${product.price.toLocaleString()} USD`
-                              : `$${product.price.toLocaleString()} Points`}
+                              : `${product.price.toLocaleString()} Points`}
                           </p>
                         )}
                       </div>
