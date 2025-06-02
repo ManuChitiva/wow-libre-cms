@@ -45,7 +45,7 @@ const ServerInformationVdp: React.FC<ServerInformationVdpProps> = ({
 
                 <div className="mt-5 sm:mt-16">
                   <a
-                    href="/subscriptions"
+                    href="#"
                     className="text-2xl inline-block rounded-full bg-indigo-600 px-12 py-3 font-medium text-white transition hover:bg-indigo-700 focus:ring-3 focus:ring-yellow-400 focus:outline-hidden"
                   >
                     {t("vdp-server.subscription-inactive.btn-text")}
