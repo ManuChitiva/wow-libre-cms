@@ -365,6 +365,7 @@ export interface BuyRedirectDto {
 export interface BannersHome {
   url: string;
   alt: string;
+  type: string; 
 }
 /* Modelo para obtener el widget de la home*/
 interface Benefit {

@@ -1,105 +1,16 @@
-"use client";
-import { bannersHome } from "@/api/home";
-import { useUserContext } from "@/context/UserContext";
-import { BannersHome } from "@/model/model";
-import { useEffect, useState } from "react";
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+
 
 const Advertising = () => {
-  const [banners, setBanners] = useState<BannersHome[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const { user } = useUserContext();
-
-  const fallbackBanners: BannersHome[] = [
-    {
-      url: "https://static.wixstatic.com/media/5dd8a0_0dfa86d27a7a4811a5ff1b8ff6f781a0~mv2.webp",
-      alt: "wowlibre_banner_two",
-    },
-    {
-      url: "https://static.wixstatic.com/media/5dd8a0_fd654b79b6024904bed55815fe7da54d~mv2.webp",
-      alt: "wowlibre_banner_two",
-    },
-    {
-      url: "https://static.wixstatic.com/media/5dd8a0_21a165a3316e459f88b1b47e3ff0c4d0~mv2.webp",
-      alt: "wowlibre_banner",
-    },
-  ];
-
-  useEffect(() => {
-    const fetchBanners = async () => {
-      try {
-        const fetchedBanners = await bannersHome(user.language);
-        setBanners(fetchedBanners);
-      } catch (error) {
-        setBanners(fallbackBanners);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchBanners();
-  }, [user]);
-
   return (
-    <div className="mt-10 flex justify-center items-center">
-      <Carousel
-        showArrows={true}
-        infiniteLoop={true}
-        autoPlay={true}
-        interval={9000}
-        showThumbs={false}
-        dynamicHeight={false}
-        showIndicators={false}
-        showStatus={false}
-        width={"100%"}
-      >
-        {loading
-          ? fallbackBanners.map((banner, index) => (
-              <div
-                key={index}
-                className="relative"
-                style={{
-                  width: "100%",
-                  position: "relative",
-                  overflow: "hidden",
-                }}
-              >
-                <img
-                  src={banner.url}
-                  alt={banner.alt}
-                  style={{
-                    width: "100%",
-                    height: "auto",
-                    maxHeight: "50rem",
-                  }}
-                  className="rounded-lg"
-                />
-              </div>
-            ))
-          : banners.map((banner, index) => (
-              <div
-                key={index}
-                className="relative"
-                style={{
-                  width: "100%",
-                  position: "relative",
-                  overflow: "hidden",
-                }}
-              >
-                <img
-                  src={banner.url}
-                  alt={banner.alt}
-                  style={{
-                    width: "100%",
-                    height: "auto",
-                    maxHeight: "60rem",
-                  }}
-                  className="rounded-lg"
-                />
-              </div>
-            ))}
-      </Carousel>
+    <div className="relative w-full h-[600px] overflow-hidden mt-5 border-none">
+        <video
+          src="https://video.wixstatic.com/video/5dd8a0_e473158d364b4d049953dbbfc598d647/1080p/mp4/file.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute top-0 left-0 w-full h-full  object-cover"
+        />
     </div>
   );
 };
