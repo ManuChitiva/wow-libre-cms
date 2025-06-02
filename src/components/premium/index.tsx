@@ -226,7 +226,7 @@ const Premium: React.FC<PremiumProps> = ({
 
           <div className="mt-1">
             <Link
-              href="/subscriptions"
+              href="#"
               className="block w-full text-center font-bold action-button bg-gradient-to-r from-yellow-500 to-yellow-700 hover:from-yellow-600 hover:to-yellow-800 text-white py-1 px-2 rounded-lg transition-all duration-300 shadow-lg"
             >
               ¡Adquiere tu Suscripción!

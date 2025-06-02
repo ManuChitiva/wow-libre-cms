@@ -104,7 +104,7 @@ const Navbar = () => {
       </div>
       {loadingSub || !pillHome ? (
         <div className="promotion">
-          <a href="/subscriptions">
+          <a href="#">
             <img
               className="image-promotion"
               src="https://static.wixstatic.com/media/5dd8a0_2db1e48e89e340ce97be2820206b9d95~mv2.webp"
