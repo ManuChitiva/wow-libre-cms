@@ -6,7 +6,7 @@
         },
         "sections": {
             "position-one": "Hermandades",
-            "position-two": "Comunidad",
+            "position-two": "Noticias",
             "position-three": "Banco",
             "position-four": "Tienda",
             "position-five": "Ayuda",
@@ -25,7 +25,7 @@
         "sections": {
             "position-one": "Inicio",
             "position-two": "Hermandades",
-            "position-three": "Comunidad",
+            "position-three": "Noticias",
             "position-four": "Banco",
             "position-five": "Tienda"
         },
@@ -54,7 +54,7 @@
             "position-two": "Hermandades",
             "position-three": "Banco",
             "position-four": "Tienda",
-            "position-five": "Comunidad",
+            "position-five": "Noticias",
             "position-six": "Soporte"
         }
     },

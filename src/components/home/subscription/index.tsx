@@ -85,7 +85,7 @@ const Subscription = () => {
           </div>
           <div className="flex justify-end mt-6">
             <Link
-              href="/subscriptions"
+              href="#"
               className="bg-pink-600 text-white py-3 px-8 rounded-lg text-lg font-medium hover:bg-pink-700 transition-colors duration-300"
             >
               {subscriptionData.btn}

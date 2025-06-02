@@ -6,7 +6,7 @@
         },
         "sections": {
             "position-one": "Guilds",
-            "position-two": "Community",
+            "position-two": "News",
             "position-three": "Bank",
             "position-four": "Store",
             "position-five": "Help",
@@ -25,7 +25,7 @@
         "sections": {
             "position-one": "Home",
             "position-two": "Guilds",
-            "position-three": "Community",
+            "position-three": "News",
             "position-four": "Bank",
             "position-five": "Store"
         },
@@ -52,7 +52,7 @@
             "position-two": "Guilds",
             "position-three": "Bank",
             "position-four": "Store",
-            "position-five": "Community",
+            "position-five": "News",
             "position-six": "Support"
         }
     },

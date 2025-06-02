@@ -6,7 +6,7 @@
         },
         "sections": {
             "position-one": "Guildas",
-            "position-two": "Comunidade",
+            "position-two": "Noticias",
             "position-three": "Banco",
             "position-four": "Loja",
             "position-five": "Ajuda",
@@ -25,7 +25,7 @@
         "sections": {
             "position-one": "Início",
             "position-two": "Guildas",
-            "position-three": "Comunidade",
+            "position-three": "Notícias",
             "position-four": "Banco",
             "position-five": "Loja"
         },
@@ -52,7 +52,7 @@
             "position-two": "Guildas",
             "position-three": "Banco",
             "position-four": "Loja",
-            "position-five": "Comunidade",
+            "position-five": "Noticias",
             "position-six": "Suporte"
         }
     },

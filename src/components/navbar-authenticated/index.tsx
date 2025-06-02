@@ -135,7 +135,7 @@ const NavbarAuthenticated = () => {
                 </li>
                 <li>
                   <Link
-                    href={webProps.comunityUrl}
+                    href="/news"
                     target="_blank"
                     className="block rounded-md px-4 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
                   >
@@ -192,7 +192,7 @@ const NavbarAuthenticated = () => {
                 <Link
                   className="rounded-md  px-4 py-3 text-x2 font-medium text-gray-300 hover:bg-gray-700 hover:text-white font-serif"
                   target="_blank"
-                  href={webProps.comunityUrl}
+                  href="/news"
                 >
                   {t("navbar_authenticated.sections.position-three")}
                 </Link>
