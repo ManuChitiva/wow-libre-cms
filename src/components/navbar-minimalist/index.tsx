@@ -64,7 +64,6 @@ const NavbarMinimalist = () => {
           <p className="">{t("navbar-minimalist.sections.position-four")}</p>
         </Link>
         <Link
-          target="_blank"
           className="flex items-center text-white text-2xl md:text-3xl hover:bg-gray-700 px-6 py-3 rounded-lg transition duration-300 font-serif"
           href="/news"
         >
