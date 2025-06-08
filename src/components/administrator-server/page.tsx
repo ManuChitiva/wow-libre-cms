@@ -16,6 +16,7 @@ import TeleportDashboard from "../dashboard/teleport";
 import AdvertisingRealmForm from "../dashboard/adversing_realm";
 import { useUserContext } from "@/context/UserContext";
 import NewsAdministrator from "../dashboard/news";
+import BannersAdvertisingDashboard from "../dashboard/banners";
 
 const AdministratorServer = () => {
   const [activeOption, setActiveOption] = useState("dashboard");
@@ -93,6 +94,9 @@ const AdministratorServer = () => {
         )}
         {activeOption === "news" && token && (
           <NewsAdministrator token={token} />
+        )}
+        {activeOption === "advertising" && token && (
+          <BannersAdvertisingDashboard token={token} />
         )}
       </main>
     </div>

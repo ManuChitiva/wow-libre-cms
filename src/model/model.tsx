@@ -361,11 +361,6 @@ export interface BuyRedirectDto {
   is_payment: boolean;
 }
 
-/* Modelo para obtener las imagenes de la home */
-export interface BannersHome {
-  url: string;
-  alt: string;
-}
 /* Modelo para obtener el widget de la home*/
 interface Benefit {
   img: string;

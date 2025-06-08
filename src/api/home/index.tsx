@@ -1,7 +1,7 @@
 import { BASE_URL_CORE, BASE_URL_TRANSACTION } from "@/configs/configs";
 import { GenericResponseDto, InternalServerError } from "@/dto/generic";
+import { Banners } from "@/model/banners";
 import {
-  BannersHome,
   PassAzerothData,
   PlansAcquisition,
   ServersPromos,
@@ -42,23 +42,19 @@ export const serversPromotions = async (
   }
 };
 
-export const bannersHome = async (language: string): Promise<BannersHome[]> => {
+export const bannersHome = async (language: string): Promise<Banners[]> => {
   try {
     const transactionId = uuidv4();
-    const response = await fetch(
-      `${BASE_URL_CORE}/api/resources/banners-home`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          transaction_id: transactionId,
-          "Accept-Language": language,
-        },
-      }
-    );
+    const response = await fetch(`${BASE_URL_CORE}/api/banners`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        transaction_id: transactionId,
+        "Accept-Language": language,
+      },
+    });
 
-    const responseData: GenericResponseDto<BannersHome[]> =
-      await response.json();
+    const responseData: GenericResponseDto<Banners[]> = await response.json();
 
     if (response.ok && response.status === 200) {
       return responseData.data;
