@@ -3,28 +3,31 @@
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 
-import { serversPromotions } from "@/api/home";
-import { ServersPromos } from "@/model/model";
+import Cookies from "js-cookie";
 import { useTranslation } from "react-i18next";
 
+import { getPlatforms } from "@/api/voting";
 import LoadingSpinner from "@/components/utilities/loading-spinner";
 import { useUserContext } from "@/context/UserContext";
+import { VotingPlatforms } from "@/model/VotingPlatforms";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { FaFacebook, FaWhatsapp } from "react-icons/fa";
+import { FaDiscord, FaFacebook, FaWhatsapp } from "react-icons/fa";
 import Slider from "react-slick";
 
-const SliderHome = () => {
-  const [partners, setPartners] = useState<ServersPromos[]>([]);
+const VotingSlider = () => {
+  const [partners, setPartners] = useState<VotingPlatforms[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const { t } = useTranslation();
   const { user } = useUserContext();
+  const token = Cookies.get("token");
+  const isAuthenticated = token && user.logged_in;
 
   useEffect(() => {
     const fetchPartners = async () => {
       setIsLoading(true);
       try {
-        const data = await serversPromotions(user.language);
+        const data = await getPlatforms(user.id || 0);
         setPartners(data);
       } catch (error) {
       } finally {
@@ -33,7 +36,7 @@ const SliderHome = () => {
     };
 
     fetchPartners();
-  }, [user.language]);
+  }, [user.id]);
 
   const settings = {
     dots: false,
@@ -74,17 +77,17 @@ const SliderHome = () => {
     <div className="contenedor py-10 px-4">
       <div className="slider-introduction mt-5  mb-10">
         <h2 className="text-4xl font-bold text-[#f6a001] title-server">
-          {t("home-servers.title")}
+          {t("home-voting-platforms.title")}
         </h2>
         <p className="text-xl text-gray-300 mt-4">
-          {t("home-servers.description")}
+          {t("home-voting-platforms.description")}
         </p>
         <a
           href="/help"
           target="_blank"
           className="text-lg text-yellow-500 mt-2 hover:text-yellow-400 underline"
         >
-          {t("home-servers.btn-information")}
+          {t("home-voting-platforms.btn-information")}
         </a>
       </div>
 
@@ -102,12 +105,12 @@ const SliderHome = () => {
           <p className="text-2xl font-serif">
             ⚔️
             <span className="text-indigo-400">
-              {t("home-servers.empty-server-list-title")}🛡️
+              {t("home-voting-platforms.empty-server-list-title")}🛡️
             </span>
             ⚔️
           </p>
           <p className="text-lg mt-4">
-            {t("home-servers.empty-server-list-subtitle")}🛡️
+            {t("home-voting-platforms.empty-server-list-subtitle")}🛡️
           </p>
         </div>
       ) : (
@@ -120,66 +123,76 @@ const SliderHome = () => {
                     {partner.name}
                   </p>
                   <p className="text-lg text-orange-300 italic">
-                    {partner.sub_title}
+                    {t("home-voting-platforms.benefit")}
                   </p>
                 </div>
                 <div className="slider-image flex justify-center items-center my-6">
                   <img
-                    src={partner.logo}
+                    src={partner.img_url}
                     alt="Logo"
                     draggable="false"
                     className="w-40 h-40 md:w-52 md:h-52 object-cover rounded-full border-4 border-gray-600 shadow-md transition-transform transform hover:scale-110"
                   />
                 </div>
+                <div className="text-center mt-6">
+                  {isAuthenticated ? (
+                    partner.postback_url && (
+                      <Link
+                        href={partner.postback_url}
+                        target="_blank"
+                        passHref
+                      >
+                        <button className="bg-gradient-to-r from-gray-700 via-gray-800 to-gray-900 text-white font-medium py-3 px-8 rounded-full shadow-lg hover:bg-gradient-to-r hover:from-gray-600 hover:via-gray-700 hover:to-gray-800 focus:outline-none focus:ring-4 focus:ring-gray-600 focus:ring-opacity-50 transition duration-300 ease-in-out">
+                          {t("home-voting-platforms.btn-register-discover")}
+                        </button>
+                      </Link>
+                    )
+                  ) : (
+                    <Link href="/register" passHref>
+                      <button className="bg-gradient-to-r from-gray-700 via-gray-800 to-gray-900 text-white font-medium py-3 px-8 rounded-full shadow-lg hover:bg-gradient-to-r hover:from-gray-600 hover:via-gray-700 hover:to-gray-800 focus:outline-none focus:ring-4 focus:ring-gray-600 focus:ring-opacity-50 transition duration-300 ease-in-out">
+                        {t("home-voting-platforms.btn-register-txt")}
+                      </button>
+                    </Link>
+                  )}
+                </div>
                 <div className="slider-text mb-4 text-center">
-                  <p className="text-gray-300 text-md leading-relaxed font-bold">
-                    {partner.description.length > 50
-                      ? `${partner.description.substring(0, 50)}...`
-                      : partner.description}
-                  </p>
                   <div className="flex justify-center mt-4 text-yellow-400">
                     <p className="text-3xl  font-bold">
-                      {partner?.realmlist.split("").map((letter, index) => (
-                        <span
-                          key={index}
-                          className="text-white animate-color-cycle "
-                        >
-                          {letter}
-                        </span>
-                      ))}
+                      {t("home-voting-platforms.disclaimer")
+                        .split("")
+                        .map((letter, index) => (
+                          <span
+                            key={index}
+                            className="text-white animate-color-cycle "
+                          >
+                            {letter}
+                          </span>
+                        ))}
                     </p>
                   </div>
                 </div>
                 <div className="flex justify-center mt-4 space-x-4">
                   <a
-                    href={partner.facebook}
+                    href=""
                     target="_blank"
                     className="text-blue-500 text-3xl hover:text-blue-400"
                   >
                     <FaFacebook />
                   </a>
                   <a
-                    href={partner.whatsapp}
+                    href=""
                     target="_blank"
                     className="text-green-500 text-3xl hover:text-green-400"
                   >
                     <FaWhatsapp />
                   </a>
-                </div>
-                <div className="text-center mt-6">
-                  {user.logged_in ? (
-                    <Link href="/register/username" target="_blank" passHref>
-                      <button className="bg-gradient-to-r from-gray-700 via-gray-800 to-gray-900 text-white font-medium py-3 px-8 rounded-full shadow-lg hover:bg-gradient-to-r hover:from-gray-600 hover:via-gray-700 hover:to-gray-800 focus:outline-none focus:ring-4 focus:ring-gray-600 focus:ring-opacity-50 transition duration-300 ease-in-out">
-                        {t("home-servers.btn-register-discover")}
-                      </button>
-                    </Link>
-                  ) : (
-                    <Link href="/register" passHref>
-                      <button className="bg-gradient-to-r from-gray-700 via-gray-800 to-gray-900 text-white font-medium py-3 px-8 rounded-full shadow-lg hover:bg-gradient-to-r hover:from-gray-600 hover:via-gray-700 hover:to-gray-800 focus:outline-none focus:ring-4 focus:ring-gray-600 focus:ring-opacity-50 transition duration-300 ease-in-out">
-                        {t("home-servers.btn-register-txt")}
-                      </button>
-                    </Link>
-                  )}
+                  <a
+                    href=""
+                    target="_blank"
+                    className="text-indigo-500 text-3xl hover:text-indigo-400"
+                  >
+                    <FaDiscord />
+                  </a>
                 </div>
               </div>
             </div>
@@ -190,4 +203,4 @@ const SliderHome = () => {
   );
 };
 
-export default SliderHome;
+export default VotingSlider;

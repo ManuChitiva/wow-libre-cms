@@ -1,64 +1,26 @@
 import { BASE_URL_CORE, BASE_URL_TRANSACTION } from "@/configs/configs";
 import { GenericResponseDto, InternalServerError } from "@/dto/generic";
+import { Banners } from "@/model/banners";
 import {
-  BannersHome,
   PassAzerothData,
   PlansAcquisition,
-  ServersPromos,
   WidgetPillHome,
 } from "@/model/model";
 import { v4 as uuidv4 } from "uuid";
 
-export const serversPromotions = async (
-  language: string
-): Promise<ServersPromos[]> => {
+export const bannersHome = async (language: string): Promise<Banners[]> => {
   try {
     const transactionId = uuidv4();
-    const response = await fetch(
-      `${BASE_URL_CORE}/api/resources/server-promos`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          transaction_id: transactionId,
-          "Accept-Language": language,
-        },
-      }
-    );
+    const response = await fetch(`${BASE_URL_CORE}/api/banners`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        transaction_id: transactionId,
+        "Accept-Language": language,
+      },
+    });
 
-    const responseData: GenericResponseDto<ServersPromos[]> =
-      await response.json();
-
-    if (response.ok && response.status === 200) {
-      return responseData.data;
-    } else {
-      const errorMessage = await response.text();
-      throw new Error(`Error [${response.status}]: ${errorMessage}`);
-    }
-  } catch (error: any) {
-    throw new Error(
-      `Could not get promotions from partner servers: ${error.message}`
-    );
-  }
-};
-
-export const bannersHome = async (language: string): Promise<BannersHome[]> => {
-  try {
-    const transactionId = uuidv4();
-    const response = await fetch(
-      `${BASE_URL_CORE}/api/resources/banners-home`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          transaction_id: transactionId,
-          "Accept-Language": language,
-        },
-      }
-    );
-
-    const responseData: GenericResponseDto<BannersHome[]> =
-      await response.json();
+    const responseData: GenericResponseDto<Banners[]> = await response.json();
 
     if (response.ok && response.status === 200) {
       return responseData.data;

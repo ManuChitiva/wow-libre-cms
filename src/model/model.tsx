@@ -38,6 +38,7 @@ export interface AccountWebRequestDto {
 }
 
 export interface LoginData {
+  id: number;
   jwt: string;
   refresh_token: string;
   expiration_date: string;
@@ -253,18 +254,6 @@ interface Service {
   is_public: boolean;
 }
 
-export interface ServersPromos {
-  id: number;
-  name: string;
-  sub_title: string;
-  description: string;
-  realmlist: string;
-  logo: string;
-  link: string;
-  whatsapp: string;
-  facebook: string;
-}
-
 export interface BankPlans {
   id: number;
   name: string;
@@ -361,11 +350,6 @@ export interface BuyRedirectDto {
   is_payment: boolean;
 }
 
-/* Modelo para obtener las imagenes de la home */
-export interface BannersHome {
-  url: string;
-  alt: string;
-}
 /* Modelo para obtener el widget de la home*/
 interface Benefit {
   img: string;
