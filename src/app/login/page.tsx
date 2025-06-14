@@ -70,6 +70,7 @@ const Login = () => {
       if (user) {
         setUser({
           ...user,
+          id: response.id,
           logged_in: true,
           avatar: avatar_url,
           language: language,

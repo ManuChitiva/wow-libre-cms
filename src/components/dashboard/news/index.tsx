@@ -512,11 +512,12 @@ const NewsAdministrator: React.FC<NewsProps> = ({ token }) => {
       )}
       {showCreateSubnewsForm && (
         <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 p-4">
-          <div className="bg-gray-900 p-6 rounded-xl shadow-xl w-full max-w-lg">
-            <h3 className="text-2xl font-bold mb-6 text-white border-b border-gray-700 pb-3">
+          <div className="bg-gray-800 p-10 rounded-2xl shadow-2xl w-full max-w-6xl border border-gray-700">
+            <h3 className="text-3xl font-bold mb-6 text-white border-b border-gray-700 pb-4">
               Crear Subnoticia
             </h3>
-            <div className="grid gap-4 mb-4">
+
+            <div className="grid gap-6 mb-6">
               <input
                 type="text"
                 name="title"
@@ -525,7 +526,7 @@ const NewsAdministrator: React.FC<NewsProps> = ({ token }) => {
                   setSubnewsForm({ ...subnewsForm, title: e.target.value })
                 }
                 placeholder="Título"
-                className="p-3 rounded bg-gray-700 text-white placeholder-gray-400"
+                className="p-4 text-lg rounded-lg bg-gray-700 text-white placeholder-gray-400 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500"
               />
               <textarea
                 name="content"
@@ -534,8 +535,8 @@ const NewsAdministrator: React.FC<NewsProps> = ({ token }) => {
                   setSubnewsForm({ ...subnewsForm, content: e.target.value })
                 }
                 placeholder="Contenido"
-                rows={4}
-                className="p-3 rounded bg-gray-700 text-white placeholder-gray-400 resize-none"
+                rows={6}
+                className="p-4 text-lg rounded-lg bg-gray-700 text-white placeholder-gray-400 resize-none border border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500"
               />
               <input
                 type="text"
@@ -545,13 +546,14 @@ const NewsAdministrator: React.FC<NewsProps> = ({ token }) => {
                   setSubnewsForm({ ...subnewsForm, imgUrl: e.target.value })
                 }
                 placeholder="URL de imagen"
-                className="p-3 rounded bg-gray-700 text-white placeholder-gray-400"
+                className="p-4 text-lg rounded-lg bg-gray-700 text-white placeholder-gray-400 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500"
               />
             </div>
+
             <div className="flex justify-end space-x-4">
               <button
                 onClick={() => setShowCreateSubnewsForm(false)}
-                className="px-4 py-2 bg-gray-600 hover:bg-gray-700 rounded text-white"
+                className="px-5 py-3 bg-gray-600 hover:bg-gray-700 rounded-lg text-white text-base font-medium"
               >
                 Cancelar
               </button>
@@ -564,7 +566,7 @@ const NewsAdministrator: React.FC<NewsProps> = ({ token }) => {
                       subnewsForm.title,
                       subnewsForm.content,
                       subnewsForm.imgUrl,
-                      "", // Si también necesitas `author`, agrégalo al form
+                      "",
                       token
                     );
                     await Swal.fire(
@@ -579,7 +581,7 @@ const NewsAdministrator: React.FC<NewsProps> = ({ token }) => {
                     await Swal.fire("Error", err.message, "error");
                   }
                 }}
-                className="px-4 py-2 bg-green-600 hover:bg-green-700 rounded text-white"
+                className="px-5 py-3 bg-green-600 hover:bg-green-700 rounded-lg text-white text-base font-semibold"
               >
                 Crear
               </button>

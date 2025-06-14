@@ -222,7 +222,7 @@ const BannersAdvertisingDashboard: React.FC<AdvertisingBannersProps> = ({
           <div className="mb-4">
             <label
               htmlFor="language"
-              className="block mb-2 text-lg font-medium"
+              className="block mb-2 text-lg font-medium "
             >
               Filtrar por idioma
             </label>
@@ -235,7 +235,6 @@ const BannersAdvertisingDashboard: React.FC<AdvertisingBannersProps> = ({
               <option value="ES">Español</option>
               <option value="EN">Inglés</option>
               <option value="PT">Portugues</option>
-              {/* Agrega más idiomas según sea necesario */}
             </select>
           </div>
 

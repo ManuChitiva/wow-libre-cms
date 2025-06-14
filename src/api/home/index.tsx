@@ -4,43 +4,9 @@ import { Banners } from "@/model/banners";
 import {
   PassAzerothData,
   PlansAcquisition,
-  ServersPromos,
   WidgetPillHome,
 } from "@/model/model";
 import { v4 as uuidv4 } from "uuid";
-
-export const serversPromotions = async (
-  language: string
-): Promise<ServersPromos[]> => {
-  try {
-    const transactionId = uuidv4();
-    const response = await fetch(
-      `${BASE_URL_CORE}/api/resources/server-promos`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          transaction_id: transactionId,
-          "Accept-Language": language,
-        },
-      }
-    );
-
-    const responseData: GenericResponseDto<ServersPromos[]> =
-      await response.json();
-
-    if (response.ok && response.status === 200) {
-      return responseData.data;
-    } else {
-      const errorMessage = await response.text();
-      throw new Error(`Error [${response.status}]: ${errorMessage}`);
-    }
-  } catch (error: any) {
-    throw new Error(
-      `Could not get promotions from partner servers: ${error.message}`
-    );
-  }
-};
 
 export const bannersHome = async (language: string): Promise<Banners[]> => {
   try {

@@ -38,6 +38,7 @@ export interface AccountWebRequestDto {
 }
 
 export interface LoginData {
+  id: number;
   jwt: string;
   refresh_token: string;
   expiration_date: string;
@@ -251,18 +252,6 @@ interface Service {
   description: string;
   score: number;
   is_public: boolean;
-}
-
-export interface ServersPromos {
-  id: number;
-  name: string;
-  sub_title: string;
-  description: string;
-  realmlist: string;
-  logo: string;
-  link: string;
-  whatsapp: string;
-  facebook: string;
 }
 
 export interface BankPlans {
