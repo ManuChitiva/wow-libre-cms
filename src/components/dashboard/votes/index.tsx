@@ -7,6 +7,7 @@ import {
 } from "@/api/voting";
 import { UserModel } from "@/context/UserContext";
 import { VotingPlatforms } from "@/model/VotingPlatforms";
+import Swal from "sweetalert2";
 
 interface VoteEntry {
   name: string;
@@ -89,8 +90,11 @@ const VotesDashboard: React.FC<VotingProps> = ({ token, user }) => {
       const updated = await getPlatforms(token);
       setPartners(updated);
     } catch (error) {
-      console.error("Error al guardar la plataforma:", error);
-      alert("Ocurrió un error al guardar la plataforma.");
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "No se pudo guardar la plataforma.",
+      });
     }
   };
 
@@ -105,15 +109,27 @@ const VotesDashboard: React.FC<VotingProps> = ({ token, user }) => {
   };
 
   const handleDelete = async (id: number) => {
-    if (!window.confirm("¿Estás seguro de eliminar esta plataforma?")) return;
+    const result = await Swal.fire({
+      title: "¿Estás seguro?",
+      text: "Esta acción no se puede deshacer.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "Cancelar",
+    });
+
+    if (!result.isConfirmed) return;
 
     try {
       await deletePlatform(token, id);
       const updated = await getPlatforms(token);
       setPartners(updated);
-    } catch (error) {
-      console.error("Error al eliminar la plataforma:", error);
-      alert("No se pudo eliminar la plataforma.");
+    } catch (error: any) {
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "No se pudo eliminar la plataforma.",
+      });
     }
   };
 
@@ -164,7 +180,7 @@ const VotesDashboard: React.FC<VotingProps> = ({ token, user }) => {
               <input
                 type="url"
                 name="url"
-                maxLength={90}
+                maxLength={80}
                 value={formData.url}
                 onChange={handleChange}
                 className="w-full rounded-md bg-gray-800 p-3 text-gray-200 border border-gray-700"
@@ -179,7 +195,7 @@ const VotesDashboard: React.FC<VotingProps> = ({ token, user }) => {
               <input
                 type="text"
                 name="ip"
-                maxLength={90}
+                maxLength={80}
                 value={formData.ip}
                 onChange={handleChange}
                 className="w-full rounded-md bg-gray-800 p-3 text-gray-200 border border-gray-700"
@@ -193,7 +209,7 @@ const VotesDashboard: React.FC<VotingProps> = ({ token, user }) => {
               <input
                 type="url"
                 name="image"
-                maxLength={90}
+                maxLength={80}
                 value={formData.image}
                 onChange={handleChange}
                 className="w-full rounded-md bg-gray-800 p-3 text-gray-200 border border-gray-700"
