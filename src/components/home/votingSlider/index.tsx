@@ -12,8 +12,22 @@ import { useUserContext } from "@/context/UserContext";
 import { VotingPlatforms } from "@/model/VotingPlatforms";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { FaDiscord, FaFacebook, FaWhatsapp } from "react-icons/fa";
+import {
+  FaDiscord,
+  FaFacebook,
+  FaInstagram,
+  FaTelegram,
+  FaWhatsapp,
+} from "react-icons/fa";
 import Slider from "react-slick";
+import { socialLinks } from "@/constants/socialLinks";
+
+const iconComponents = {
+  Facebook: FaFacebook,
+  Instagram: FaInstagram,
+  WhatsApp: FaWhatsapp,
+  Telegram: FaTelegram,
+};
 
 const VotingSlider = () => {
   const [partners, setPartners] = useState<VotingPlatforms[]>([]);
@@ -27,7 +41,7 @@ const VotingSlider = () => {
     const fetchPartners = async () => {
       setIsLoading(true);
       try {
-        const data = await getPlatforms(user.id || 0);
+        const data = await getPlatforms(token || null);
         setPartners(data);
       } catch (error) {
       } finally {
@@ -36,7 +50,7 @@ const VotingSlider = () => {
     };
 
     fetchPartners();
-  }, [user.id]);
+  }, [token]);
 
   const settings = {
     dots: false,
@@ -172,27 +186,24 @@ const VotingSlider = () => {
                   </div>
                 </div>
                 <div className="flex justify-center mt-4 space-x-4">
-                  <a
-                    href=""
-                    target="_blank"
-                    className="text-blue-500 text-3xl hover:text-blue-400"
-                  >
-                    <FaFacebook />
-                  </a>
-                  <a
-                    href=""
-                    target="_blank"
-                    className="text-green-500 text-3xl hover:text-green-400"
-                  >
-                    <FaWhatsapp />
-                  </a>
-                  <a
-                    href=""
-                    target="_blank"
-                    className="text-indigo-500 text-3xl hover:text-indigo-400"
-                  >
-                    <FaDiscord />
-                  </a>
+                  {socialLinks.map((social) => {
+                    const Icon =
+                      iconComponents[
+                        social.name as keyof typeof iconComponents
+                      ];
+                    return (
+                      <a
+                        key={social.name}
+                        href={social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={social.name}
+                        className={`${social.color} text-3xl transition hover:opacity-80`}
+                      >
+                        <Icon />
+                      </a>
+                    );
+                  })}
                 </div>
               </div>
             </div>

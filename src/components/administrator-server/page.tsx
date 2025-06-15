@@ -17,6 +17,7 @@ import AdvertisingRealmForm from "../dashboard/adversing_realm";
 import { useUserContext } from "@/context/UserContext";
 import NewsAdministrator from "../dashboard/news";
 import BannersAdvertisingDashboard from "../dashboard/banners";
+import VotesDashboard from "../dashboard/votes";
 
 const AdministratorServer = () => {
   const [activeOption, setActiveOption] = useState("dashboard");
@@ -75,9 +76,6 @@ const AdministratorServer = () => {
         {activeOption === "users" && token && serverId && (
           <UsersDashboard token={token} serverId={serverId} />
         )}
-        {activeOption === "promotions" && token && serverId && (
-          <PromotionsDashboard />
-        )}
         {activeOption === "settings" && token && serverId && (
           <SettingsServer token={token} serverId={serverId} />
         )}
@@ -97,6 +95,9 @@ const AdministratorServer = () => {
         )}
         {activeOption === "advertising" && token && (
           <BannersAdvertisingDashboard token={token} />
+        )}
+        {activeOption === "votes" && token && (
+          <VotesDashboard token={token} user={user} />
         )}
       </main>
     </div>

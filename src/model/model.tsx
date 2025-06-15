@@ -38,7 +38,6 @@ export interface AccountWebRequestDto {
 }
 
 export interface LoginData {
-  id: number;
   jwt: string;
   refresh_token: string;
   expiration_date: string;
