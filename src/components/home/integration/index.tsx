@@ -1,5 +1,5 @@
 "use client";
-import { homeProps } from "@/constants/home";
+import { webProps } from "@/constants/configs";
 import React from "react";
 
 import { useTranslation } from "react-i18next";
@@ -34,7 +34,7 @@ const ServerFeatures = () => {
         </div>
         <div className="grid grid-cols-1 gap-2 md:mt-0 mt-20  ">
           <img
-            src={homeProps.featuresServerImg}
+            src={webProps.homeFeaturesImg}
             alt="features"
             className="shadow shadow-teal-300 w-500% h-500 object-cover mx-auto rounded-full"
           />

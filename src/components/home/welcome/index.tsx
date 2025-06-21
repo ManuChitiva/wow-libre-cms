@@ -1,7 +1,6 @@
 "use client";
 import DiscordWidget from "@/components/discord";
 import LoadingSpinner from "@/components/utilities/loading-spinner";
-import { homeProps } from "@/constants/home";
 import { useTranslation } from "react-i18next";
 
 const WelcomeHome = () => {
