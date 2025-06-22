@@ -4,6 +4,7 @@ import { login } from "@/api/account/login";
 import LoadingSpinner from "@/components/utilities/loading-spinner";
 import UseAuthRedirect from "@/components/utilities/logged-in";
 import AlertComponent from "@/components/utilities/show-alert";
+import { webProps } from "@/constants/configs";
 import { useUserContext } from "@/context/UserContext";
 import Cookies from "js-cookie";
 import Link from "next/link";
@@ -12,7 +13,6 @@ import React, { ChangeEvent, useState } from "react";
 import { useTranslation } from "react-i18next";
 import Swal from "sweetalert2";
 import "./style.css";
-import { webProps } from "@/constants/configs";
 
 const Login = () => {
   const { t } = useTranslation();

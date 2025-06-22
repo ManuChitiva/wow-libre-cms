@@ -1061,5 +1061,57 @@
             "title": "Character teleported successfully!",
             "text": "Teleportation has been activated correctly!"
         }
+    },
+    "privacy": {
+        "title": "Privacy Policy",
+        "intro": "This privacy policy describes how we manage personal information in the use of our CMS software. By using this system, you agree to the terms described here.",
+        "sections": {
+            "infoCollection": {
+                "title": "1. Information Collection",
+                "content": "We do not collect personal data without your explicit consent. If you choose to provide it (e.g., via contact or subscription forms), it will be treated with the highest confidentiality."
+            },
+            "infoUsage": {
+                "title": "2. Use of Information",
+                "content": "Collected data will be used solely for the purposes explicitly stated, such as improving the service, managing your account, or responding to your inquiries."
+            },
+            "dataSharing": {
+                "title": "3. Data Sharing",
+                "content": "We do not sell or share your data with third parties unless legally required or with your explicit consent."
+            },
+            "security": {
+                "title": "4. Security",
+                "content": "We apply technical and organizational measures to protect your data against unauthorized access, loss, or alteration."
+            },
+            "changes": {
+                "title": "5. Changes to this Policy",
+                "content": "We reserve the right to modify this policy. Any change will be notified on our website and will take effect from its publication."
+            },
+            "footer": "For more information or inquiries about this policy, visit",
+            "brand": "Wow Libre"
+        }
+    },
+    "terms": {
+        "title": "Terms and Conditions of Use",
+        "intro": "This document sets forth the terms and conditions governing the use of our open-source CMS software developed by our community. By accessing, installing, or using our system, you agree to comply with all the clauses outlined below. We recommend reading them carefully before starting.",
+        "sections": {
+            "license": {
+                "title": "1. License of Use",
+                "content": "The CMS is distributed under a dual license:\n\nPersonal or Non-Commercial Use: You may freely use, modify, and redistribute the software under the terms of our Open Community License, inspired by open-source principles.\n\nCommercial Use: If you intend to use this CMS as a base for a platform, product, or service for profit, you must first obtain a specific Commercial License. This license includes additional conditions and may involve fees proportional to the level of use or revenue generated.\n\nUnauthorized commercial use will be considered a violation of the license terms and may lead to legal action. To request a commercial license, please contact us through our official website."
+            },
+            "liability": {
+                "title": "2. Limitation of Liability",
+                "content": "This software is provided \"as is\" and without any express or implied warranties. Under no circumstances shall we be liable for direct or indirect damages, data loss, service interruptions, or any other consequences arising from the use of the CMS."
+            },
+            "community": {
+                "title": "3. Community Contributions",
+                "content": "We value contributions made by developers to the project. By submitting any improvement, fix, or proposal, you grant the right for your contribution to be incorporated into the software under the same terms as the original license, promoting open and collaborative development."
+            },
+            "changes": {
+                "title": "4. Changes to the Terms",
+                "content": "We reserve the right to modify these terms at any time without prior notice. Changes will become effective immediately upon publication on our official repository or website. We recommend reviewing this section periodically."
+            },
+            "footer": "For more information about our CMS, its principles, and upcoming releases, visit",
+            "brand": "Wow Libre"
+        }
     }
 }

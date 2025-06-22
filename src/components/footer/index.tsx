@@ -19,7 +19,7 @@ const Footer = () => {
                 <ul className="mt-4 space-y-4">
                   <li>
                     <a
-                      href="#"
+                      href="/terms"
                       className="text-lg leading-6 text-gray-300 hover:text-gray-100 transition duration-150 ease-in-out"
                     >
                       {t("footer.terms-of-use")}
@@ -27,7 +27,7 @@ const Footer = () => {
                   </li>
                   <li>
                     <a
-                      href="#"
+                      href="/privacy"
                       className="text-lg leading-6 text-gray-300 hover:text-gray-100 transition duration-150 ease-in-out"
                     >
                       {t("footer.privacy-policy")}

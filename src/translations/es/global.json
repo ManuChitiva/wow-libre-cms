@@ -1063,5 +1063,57 @@
             "title": "¡Personaje teletransportado con éxito!",
             "text": "¡El teletransporte ha sido activado correctamente!"
         }
+    },
+    "privacy": {
+        "title": "Política de Privacidad",
+        "intro": "Esta política de privacidad describe cómo gestionamos la información personal en el uso de nuestro software CMS. Al utilizar este sistema, aceptas los términos aquí descritos.",
+        "sections": {
+            "infoCollection": {
+                "title": "1. Recogida de Información",
+                "content": "No recopilamos datos personales sin tu consentimiento explícito. Si decides proporcionarlos (por ejemplo, en formularios de contacto o suscripción), serán tratados con la máxima confidencialidad."
+            },
+            "infoUsage": {
+                "title": "2. Uso de la Información",
+                "content": "Los datos recogidos se usarán únicamente para los fines expresamente indicados, como mejorar el servicio, gestionar tu cuenta o responder a tus consultas."
+            },
+            "dataSharing": {
+                "title": "3. Compartición de Datos",
+                "content": "No vendemos ni compartimos tus datos con terceros, salvo que sea legalmente requerido o con tu consentimiento explícito."
+            },
+            "security": {
+                "title": "4. Seguridad",
+                "content": "Aplicamos medidas técnicas y organizativas para proteger tus datos contra accesos no autorizados, pérdidas o alteraciones."
+            },
+            "changes": {
+                "title": "5. Cambios en esta Política",
+                "content": "Nos reservamos el derecho a modificar esta política. Cualquier cambio será notificado en nuestro sitio web y entrará en vigor desde su publicación."
+            },
+            "footer": "Para más información o consultas sobre esta política, visita",
+            "brand": "Wow Libre"
+        }
+    },
+    "terms": {
+        "title": "Términos y Condiciones de Uso",
+        "intro": "Este documento establece los términos y condiciones que rigen el uso del software CMS de código abierto desarrollado por nuestra comunidad. Al acceder, instalar o utilizar nuestro sistema, aceptas cumplir con todas las cláusulas expuestas a continuación. Te recomendamos leerlas con atención antes de comenzar.",
+        "sections": {
+            "license": {
+                "title": "1. Licencia de Uso",
+                "content": "El CMS se distribuye bajo una licencia dual. Para uso personal o no comercial, se permite utilizar, modificar y redistribuir el software de forma libre, conforme a los términos de nuestra Licencia de Comunidad Abierta, basada en principios de código abierto. En caso de uso comercial —como parte de una plataforma, producto o servicio con fines lucrativos—, será obligatorio obtener una Licencia Comercial específica. Esta licencia incluye condiciones adicionales y puede implicar el pago de tarifas proporcionales al nivel de uso o ingresos obtenidos. El uso con fines comerciales sin autorización previa se considerará una violación de los términos establecidos y podrá dar lugar a acciones legales. Para obtener más información o solicitar una licencia comercial, contacta con nosotros a través de nuestro sitio web oficial."
+            },
+            "liability": {
+                "title": "2. Limitación de Responsabilidad",
+                "content": "Este software se proporciona \"tal cual\" y sin garantías explícitas o implícitas de ningún tipo. Bajo ninguna circunstancia seremos responsables por daños directos o indirectos, pérdidas de datos, interrupciones del servicio o cualquier otra consecuencia derivada del uso del CMS."
+            },
+            "community": {
+                "title": "3. Aportaciones de la Comunidad",
+                "content": "Valoramos las contribuciones que los desarrolladores realicen al proyecto. Al enviar cualquier mejora, corrección o propuesta, concedes el derecho a que tu contribución sea incorporada al software bajo los mismos términos de la licencia original, promoviendo así un desarrollo abierto y colaborativo."
+            },
+            "changes": {
+                "title": "4. Modificaciones de los Términos",
+                "content": "Nos reservamos el derecho de modificar estos términos en cualquier momento, sin previo aviso. Las modificaciones entrarán en vigor inmediatamente tras su publicación en nuestro repositorio oficial o sitio web. Recomendamos revisar esta sección de forma periódica."
+            },
+            "footer": "Para más información sobre nuestro CMS, sus principios y próximos lanzamientos, visita",
+            "brand": "Wow Libre"
+        }
     }
 }

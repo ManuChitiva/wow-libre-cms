@@ -96,125 +96,106 @@ const ChangePassword = () => {
   };
 
   return (
-    <div className="contenedor">
+    <div className="contenedor bg-gradient-to-br bg-midnight text-gray-100">
       <NavbarMinimalist />
-      <div className="antialiased flex items-center justify-center p-4 mt-24 mb-16">
-        <div className="max-w-8xl w-full bg-gray-800 p-8 md:p-12 rounded-xl shadow shadow-slate-300 flex flex-col md:flex-row">
-          {/* Form Section */}
-          <div className="w-full md:w-1/3 md:pr-8 mt-10">
+      <div className="flex items-center justify-center py-16 px-4 mt-10">
+        <div className="w-full max-w-9xl bg-gray-900 border border-indigo-800/30 rounded-2xl shadow-2xl p-8 md:p-15 flex flex-col md:flex-row">
+          <div className="w-full md:w-1/2 pr-0 md:pr-8 mt-8">
             {currentForm === "reset" ? (
               <>
-                <h1 className="text-3xl md:text-4xl font-medium text-white">
+                <h1 className="text-4xl font-extrabold text-indigo-400">
                   {t("reset-password.section-one.title")}
                 </h1>
-                <p className="text-slate-400 text-2xl">
+                <p className="text-2xl text-slate-300">
                   {t("reset-password.section-one.sub-title")}
                 </p>
 
-                <form onSubmit={handleSubmit} className="my-10">
-                  <div className="flex flex-col space-y-5 mt-20">
-                    <label htmlFor="email">
-                      <p className="font-medium text-white pb-2">
-                        {t("reset-password.section-one.var-mail")}
-                      </p>
-                      <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        className="text-2xl w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
-                        placeholder={t(
-                          "reset-password.section-one.var-mail-placeholder"
-                        )}
-                        required
-                        autoComplete="email"
-                      />
-                    </label>
+                <form onSubmit={handleSubmit} className="mt-10 space-y-6">
+                  <label htmlFor="email" className="block text-2xl">
+                    <span className="text-indigo-300">
+                      {t("reset-password.section-one.var-mail")}
+                    </span>
+                    <input
+                      id="email"
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder={t(
+                        "reset-password.section-one.var-mail-placeholder"
+                      )}
+                      className="text-2xl mt-2 w-full px-4 py-3 text-white bg-gray-800 border border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                      required
+                    />
+                  </label>
+                  {error && <p className="text-red-500 text-2xl">{error}</p>}
+                  {successMessage && (
+                    <p className="text-green-500 text-2xl">{successMessage}</p>
+                  )}
 
-                    {error && <p className="text-red-500 text-sm">{error}</p>}
-                    {successMessage && (
-                      <p className="text-green-500 text-sm">{successMessage}</p>
-                    )}
-
-                    <button
-                      type="submit"
-                      className="w-full py-3 font-medium text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg border-indigo-500 hover:shadow inline-flex space-x-2 items-center justify-center"
-                      disabled={loading}
-                    >
-                      {loading
-                        ? t("reset-password.section-one.btn.send")
-                        : t("reset-password.section-one.btn.txt")}
-                    </button>
-                  </div>
+                  <button
+                    type="submit"
+                    className="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-xl transition duration-200"
+                    disabled={loading}
+                  >
+                    {loading
+                      ? t("reset-password.section-one.btn.send")
+                      : t("reset-password.section-one.btn.txt")}
+                  </button>
                 </form>
               </>
             ) : (
               <>
-                <h1 className="text-3xl md:text-4xl font-medium text-white">
+                <h1 className="text-4xl font-extrabold text-indigo-400">
                   {t("reset-password.section-two.title")}
                 </h1>
-                <p className="text-slate-400 text-xl">
+                <p className="text-2xl text-slate-300">
                   {t("reset-password.section-two.sub-title")}
                 </p>
 
-                <form onSubmit={handleOtpSubmit} className="my-10">
-                  <div className="flex flex-col space-y-5 mt-10">
-                    <p className="font-medium text-white pb-6">
-                      {t("reset-password.section-two.disclaimer")}
-                    </p>
-
-                    <div className="flex justify-center space-x-2">
-                      {otp.map((value, index) => (
-                        <label key={index} htmlFor={`otp-${index}`}>
-                          <input
-                            id={`otp-${index}`}
-                            name={`otp-${index}`}
-                            type="text"
-                            maxLength={1}
-                            className="py-4 px-2 w-16 text-xl md:text-2xl text-center border font-bold border-slate-200 rounded-lg focus:outline-none focus:border-slate-500 hover:shadow"
-                            value={value}
-                            onChange={(e) =>
-                              handleOtpChange(index, e.target.value)
-                            }
-                            placeholder="-"
-                          />
-                        </label>
-                      ))}
-                    </div>
-                    {error && <p className="text-red-500 text-lg">{error}</p>}
-
-                    <button
-                      type="submit"
-                      className="mt-10 w-full py-3 font-medium text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg border-indigo-500 hover:shadow inline-flex space-x-2 items-center justify-center"
-                    >
-                      {loading
-                        ? t("reset-password.section-two.btn.send")
-                        : t("reset-password.section-two.btn.txt")}
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        handleBackClick();
-                      }}
-                      className="w-full py-3 font-medium text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg border-indigo-500 hover:shadow inline-flex space-x-2 items-center justify-center mt-4"
-                    >
-                      <span>{t("reset-password.section-two.btn.return")}</span>
-                    </button>
+                <form onSubmit={handleOtpSubmit} className="mt-10 space-y-6">
+                  <p className="text-indigo-300 text-base">
+                    {t("reset-password.section-two.disclaimer")}
+                  </p>
+                  <div className="flex justify-between space-x-2">
+                    {otp.map((value, index) => (
+                      <input
+                        key={index}
+                        maxLength={1}
+                        value={value}
+                        onChange={(e) => handleOtpChange(index, e.target.value)}
+                        className="w-full max-w-[60px] py-4 text-center text-xl text-white bg-gray-800 border border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        placeholder="-"
+                      />
+                    ))}
                   </div>
+                  {error && <p className="text-red-500 text-base">{error}</p>}
+
+                  <button
+                    type="submit"
+                    className="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-xl transition duration-200"
+                  >
+                    {loading
+                      ? t("reset-password.section-two.btn.send")
+                      : t("reset-password.section-two.btn.txt")}
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={handleBackClick}
+                    className="w-full py-3 bg-gray-700 hover:bg-gray-600 text-white font-medium rounded-xl transition duration-200"
+                  >
+                    {t("reset-password.section-two.btn.return")}
+                  </button>
                 </form>
               </>
             )}
           </div>
 
-          {/* Image Section */}
-          <div className="w-full md:w-2/3 flex items-center justify-center mt-8 md:mt-0 select-none aspect-[19/9]">
+          <div className="w-full md:w-1/2 mt-10 md:mt-0 flex items-center justify-center">
             <img
               src="https://static.wixstatic.com/media/5dd8a0_63a72eedb8914a68b6b9356631479b66~mv2.webp"
               alt="recovery-password"
-              className="rounded-3xl w-full h-full object-cover"
+              className="rounded-2xl shadow-xl object-cover w-full h-auto max-h-[500px]"
             />
           </div>
         </div>

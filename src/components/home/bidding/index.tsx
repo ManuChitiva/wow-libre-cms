@@ -1,14 +1,13 @@
 "use client";
 import { getProductOffert } from "@/api/store";
+import { useUserContext } from "@/context/UserContext";
 import { Product } from "@/model/model";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import "react-multi-carousel/lib/styles.css";
 import MultiCarousel from "../carrousel-multiple";
-import "./style.css";
-import Link from "next/link";
-import { useUserContext } from "@/context/UserContext";
 
 const Bidding = () => {
   const router = useRouter();
@@ -31,83 +30,86 @@ const Bidding = () => {
   }, [user]);
 
   return (
-    <div className="contenedor mx-auto mt-5 h-full">
-      <div className="text-center md:text-left mb-5">
-        <h2 className="text-4xl  font-bold text-[#f6a001] title-server mb-4">
+    <div className="contenedor mx-auto mt-10 px-4">
+      <div className="text-center md:text-left mb-8">
+        <h2 className="text-4xl font-bold text-yellow-400 mb-4">
           {t("home-products.title")}
         </h2>
-        <p className="text-xl text-white mb-2">{t("home-products.subtitle")}</p>
+        <p className="text-lg text-white mt-2">{t("home-products.subtitle")}</p>
       </div>
-      <div className="bidding-primary flex flex-col md:flex-row justify-between">
-        <div className="bidding-day bg-gradient-to-b from-[#27445f] to-[#161d2a] rounded-lg p-6 w-full max-w-md">
-          <div className="bidding-day-title">
-            <h3 className="text-xl md:text-2xl lg:text-3xl xl:text-3xl mt-4">
-              {t("home-products.offer-day.title")}
-            </h3>
-          </div>
-          <div className="bidding-day-image mb-4">
+
+      <div className="flex flex-col md:flex-row gap-6">
+        {/* OFERTA DEL DÍA */}
+        <div className="bg-gradient-to-b from-gray-800 via-gray-900 to-black rounded-xl p-6 w-full md:max-w-md h-auto md:h-[50rem] flex flex-col">
+          <h3 className="text-2xl font-semibold text-white mb-4">
+            {t("home-products.offer-day.title")}
+          </h3>
+
+          <div className="flex justify-center items-center mb-4 h-80 rounded-lg overflow-hidden select-none">
             <img
               src={
                 products?.img_url ||
                 "https://static.wixstatic.com/media/5dd8a0_94523c2ce6774c99a776afcd8c84d2f9~mv2.png"
               }
               alt="Product Max Discount"
-              className="w-full h-96 object-cover rounded-md transition duration-300 hover:opacity-75"
+              className="w-full h-full object-contain transition duration-300 hover:opacity-75"
             />
           </div>
 
-          <div className="bidding-day-content text-left">
-            {products && (
-              <div>
-                <p className="bidding-day-content-product-title text-lg md:text-xl lg:text-2xl xl:text-3xl mb-4">
-                  {products?.name}
-                </p>
-                <p className="text-lg md:text-xl lg:text-2xl xl:text-xl  text-gray-200">
-                  {products?.category}
-                </p>
-                <p className="text-lg md:text-xl lg:text-2xl xl:text-xl  text-gray-200">
-                  {products?.partner}
-                </p>
-              </div>
-            )}
-            {products &&
-              (products.use_points ? (
-                <p className="bidding-day-content-product-price text-lg md:text-xl lg:text-2xl xl:text-2xl pt-4 mb-2">
-                  {products.discount_price} Points
-                </p>
-              ) : (
-                <p className="bidding-day-content-product-price text-lg md:text-xl lg:text-2xl xl:text-2xl pt-4 mb-2">
-                  $ {products.discount_price} Usd
-                </p>
-              ))}
-
+          <div className="text-white flex-1 flex flex-col justify-between">
             {products ? (
-              <a className="text-gray-300 text-lg md:text-xl lg:text-2xl xl:text-xl mb-2 block">
-                {products?.disclaimer}
-              </a>
-            ) : (
-              <a className="text-gray-300 text-lg md:text-xl lg:text-2xl xl:text-xl mb-2 block">
-                {t("home-products.offer-day.disclaimer")}
-              </a>
-            )}
+              <>
+                <div>
+                  <h4 className="text-xl font-bold text-yellow-400">
+                    {products.name}
+                  </h4>
+                  <p className="text-xl text-gray-300">{products.category}</p>
+                  <p className="text-xl text-gray-300">{products.partner}</p>
+                </div>
 
-            {products ? (
-              <button
-                onClick={() => handleSelectItem(products.reference_number)}
-                className="w-full mt-4 bg-blue-900 text-white py-2 px-4 rounded hover:bg-blue-600 transition-all text-lg"
-              >
-                {t("home-products.offer-day.btn.primary")}
-              </button>
+                <div className="mt-4">
+                  <p className="text-xl font-semibold text-blue-400">
+                    {products.use_points
+                      ? `${products.discount_price} Points`
+                      : `$ ${products.discount_price} Usd`}
+                  </p>
+                </div>
+
+                <p className="text-xl text-gray-400 mt-2">
+                  {products?.disclaimer ??
+                    t("home-products.offer-day.disclaimer")}
+                </p>
+
+                {/* Botón abajo y ancho completo */}
+                <div className="mt-auto">
+                  <button
+                    onClick={() => handleSelectItem(products.reference_number)}
+                    className="w-full bg-indigo-700 hover:bg-indigo-500 text-white py-2 px-4 rounded text-lg transition-all"
+                  >
+                    {t("home-products.offer-day.btn.primary")}
+                  </button>
+                </div>
+              </>
             ) : (
-              <Link href="/store" passHref>
-                <button className="w-full mt-4 bg-blue-900 text-white py-2 px-4 rounded hover:bg-blue-600 transition-all text-2xl">
-                  {t("home-products.offer-day.btn.alternative")}
-                </button>
-              </Link>
+              <>
+                <p className="text-xl text-gray-400 mt-2">
+                  {t("home-products.offer-day.disclaimer")}
+                </p>
+                {/* Botón abajo y ancho completo */}
+                <div className="mt-auto">
+                  <Link href="/store" passHref>
+                    <button className="w-full bg-indigo-700 hover:bg-indigo-500 text-white py-2 px-4 rounded text-2xl transition-all">
+                      {t("home-products.offer-day.btn.alternative")}
+                    </button>
+                  </Link>
+                </div>
+              </>
             )}
           </div>
         </div>
-        <div className="bidding-offert bg-gray-800 rounded-lg p-4 mt-6 md:mt-0">
+
+        {/* CARRUSEL */}
+        <div className="bg-gradient-to-b from-slate-800 via-slate-900 to-gray-950 rounded-xl p-6 w-full h-auto md:h-[50rem]">
           <MultiCarousel t={t} />
         </div>
       </div>
