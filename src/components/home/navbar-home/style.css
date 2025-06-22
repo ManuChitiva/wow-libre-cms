@@ -4,8 +4,51 @@
   display: grid;
   grid-template-columns: 2fr 2fr 2fr;
   gap: 1rem;
+  position: relative;
+  overflow: visible;
+}
+.language-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #1f2937; /* bg-gray-800 */
+  border: 1px solid #374151; /* border-gray-700 */
+  border-radius: 0.5rem;
+  z-index: 9999;
+  width: max-content;
+  min-width: 10rem;
+  max-width: 90vw;
+  overflow: hidden;
 }
 
+.language-dropdown ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.language-dropdown li {
+  padding: 0.75rem 1rem;
+  text-align: center;
+  font-size: 1rem;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.language-dropdown li:hover {
+  background-color: #374151; /* hover:bg-gray-700 */
+}
+
+* {
+  box-sizing: border-box;
+}
+body {
+  overflow-x: hidden;
+}
 .logo-home {
   padding-top: 4rem;
   display: flex;

@@ -199,14 +199,10 @@ const Navbar = () => {
           </a>
 
           {languageDropdown && (
-            <div className="absolute top-full left-[55%] bg-gray-800 border border-gray-700 rounded-md shadow-lg z-50 mt-2 min-w-[100px] text-center">
-              <ul className="text-white p-2">
+            <div className="language-dropdown">
+              <ul>
                 {languages.map((lang) => (
-                  <li
-                    key={lang}
-                    className="cursor-pointer p-2 hover:bg-gray-700 rounded-md"
-                    onClick={() => changeLanguage(lang)}
-                  >
+                  <li onClick={() => changeLanguage(lang)}>
                     {lang.toUpperCase()}
                   </li>
                 ))}
