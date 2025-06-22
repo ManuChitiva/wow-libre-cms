@@ -19,6 +19,7 @@ const Navbar = () => {
   const [languages, setLanguages] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadingSub, setLoadingSub] = useState(true);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const { user, setUser } = useUserContext();
   const [pillHome, setPillHome] = useState<WidgetPillHome>();
@@ -82,8 +83,12 @@ const Navbar = () => {
     setLanguageDropdown(false);
   };
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
   return (
-    <div className="navbar contenedor  text-white">
+    <div className="navbar contenedor text-white relative overflow-x-hidden">
       <header>
         <Link className="logo-home flex items-center" href="/">
           <img
@@ -96,12 +101,35 @@ const Navbar = () => {
           </p>
         </Link>
       </header>
-      <div className="searcher flex-grow text-black  text-2xl">
+
+      {/* Botón menú mobile */}
+      <button
+        className="md:hidden absolute top-6 right-6 z-50"
+        onClick={toggleMobileMenu}
+      >
+        <svg
+          className="w-8 h-8 text-white"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M4 6h16M4 12h16M4 18h16"
+          ></path>
+        </svg>
+      </button>
+
+      <div className="searcher flex-grow text-black text-2xl hidden md:block">
         <Searcher
           onSearch={handleSearch}
           placeHolder={t("navbar.search.place-holder")}
         />
       </div>
+
       {loadingSub || !pillHome ? (
         <div className="promotion">
           <a href="/subscriptions">
@@ -171,7 +199,7 @@ const Navbar = () => {
           </a>
 
           {languageDropdown && (
-            <div className="absolute mt-10 right-0 bg-gray-800 border border-gray-700 rounded-md shadow-lg z-50">
+            <div className="absolute top-full left-[55%] bg-gray-800 border border-gray-700 rounded-md shadow-lg z-50 mt-2 min-w-[100px] text-center">
               <ul className="text-white p-2">
                 {languages.map((lang) => (
                   <li
@@ -188,40 +216,31 @@ const Navbar = () => {
         </div>
       )}
 
-      <div className="nav-category">
-        <nav className="category flex space-x-4">
-          <Link
-            className="category-link hover:text-gray-400 font-serif"
-            href="/guild"
-          >
+      {/* Menú de navegación */}
+      <div
+        className={`nav-category md:flex ${
+          isMobileMenuOpen ? "flex" : "hidden"
+        } flex-col md:flex-row gap-4 md:gap-10 items-center absolute md:static bg-midnight md:bg-transparent w-full md:w-auto top-20 left-0 p-4 z-40`}
+      >
+        <nav className="category">
+          <Link className="category-link" href="/guild">
             {t("navbar.sections.position-one")}
           </Link>
-          <Link
-            className="category-link hover:text-gray-400 font-serif"
-            href="/news"
-          >
+          <Link className="category-link" href="/news">
             {t("navbar.sections.position-two")}
           </Link>
-          <Link
-            className="category-link hover:text-gray-400 font-serif"
-            href="/bank"
-          >
+          <Link className="category-link" href="/bank">
             {t("navbar.sections.position-three")}
           </Link>
-          <Link
-            className="category-link hover:text-gray-400 font-serif"
-            href="/store"
-          >
+          <Link className="category-link" href="/store">
             {t("navbar.sections.position-four")}
           </Link>
-          <Link
-            className="category-link hover:text-gray-400 font-serif"
-            href="/help"
-          >
+          <Link className="category-link" href="/help">
             {t("navbar.sections.position-five")}
           </Link>
         </nav>
       </div>
+
       <div className="auth relative">
         <NavbarAuth />
       </div>
