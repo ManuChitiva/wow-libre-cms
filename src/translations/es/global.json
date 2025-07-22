@@ -1206,5 +1206,33 @@
             "primary": "Promocionar"
         },
         "description": "Aumenta la visibilidad de tu reino y atrae a más jugadores."
+    },
+    "faqs-dashboard": {
+        "title": "Administrador de preguntas frecuentes (FAQs)",
+        "question": "Pregunta",
+        "answer": "Respuesta",
+        "type-text": "Tipo",
+        "language-text": "Idioma",
+        "filter-faqs-type": "Filtrar FAQs por tipo",
+        "filter-faqs-language": "Filtrar FAQs por idioma",
+        "empty": {
+            "title": " No hay FAQs disponibles con ese filtro."
+        },
+        "language": {
+            "title": "Idioma",
+            "select": "Selecciona un idioma",
+            "es": "Español",
+            "en": "Inglés",
+            "pt": "Portugués"
+        },
+        "type": {
+            "title": "Tipo",
+            "support": "Soporte",
+            "subscription": "Suscripción"
+        },
+        "btn": {
+            "add-faq": "Agregar FAQ",
+            "delete-faq": "Eliminar FAQ"
+        }
     }
 }

@@ -1204,5 +1204,9 @@
             "primary": "Promote"
         },
         "description": "Increase your realm’s visibility and attract more players."
+    },
+    "faqs-dashboard": {
+        "title": "FAQs Dashboard",
+        "description": "Manage your frequently asked questions."
     }
 }

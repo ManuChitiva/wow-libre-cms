@@ -6,11 +6,14 @@ import Swal from "sweetalert2";
 
 interface FaqsDashboardProps {
   token: string;
+  t: (key: string) => string;
 }
 
-type FaqWithLanguage = FaqsModel & { language: string };
+type FaqWithLanguage = FaqsModel & {
+  language: string;
+};
 
-const FaqsDashboard: React.FC<FaqsDashboardProps> = ({ token }) => {
+const FaqsDashboard: React.FC<FaqsDashboardProps> = ({ token, t }) => {
   const [faqs, setFaqs] = useState<FaqWithLanguage[]>([]);
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
@@ -100,7 +103,7 @@ const FaqsDashboard: React.FC<FaqsDashboardProps> = ({ token }) => {
   return (
     <div className="text-gray-200 flex flex-col items-center md:p-24 relative min-h-screen">
       <div
-        className="absolute inset-0 bg-cover bg-center opacity-60"
+        className="absolute inset-0 bg-cover bg-center opacity-50"
         style={{
           backgroundImage:
             "url('https://images4.alphacoders.com/620/thumb-1920-620386.jpg')",
@@ -110,15 +113,13 @@ const FaqsDashboard: React.FC<FaqsDashboardProps> = ({ token }) => {
         {/* Formulario */}
         <section
           aria-label="Formulario para agregar FAQs"
-          className="relative rounded-lg shadow-xl p-8 w-full md:w-[600px] bg-gray-900 border border-transparent"
+          className="relative rounded-lg shadow-xl p-8 w-full md:w-[600px] bg-[#1a1a1a] border border-[#7a5b26] transition-shadow duration-300 hover:shadow-[0_0_25px_5px_#7a5b26]"
           style={{
-            backgroundImage: "linear-gradient(#1f2937, #111827)",
-            borderImage: "linear-gradient(to right, #6366f1, #06b6d4)",
-            borderImageSlice: 1,
+            backgroundImage: "linear-gradient(#1a1a1a, #111111)",
           }}
         >
-          <h2 className="text-3xl font-extrabold text-indigo-400 mb-8 tracking-wide">
-            Administrador de FAQs
+          <h2 className="text-3xl font-extrabold text-[#c9aa57] mb-8 tracking-wide">
+            {t("faqs-dashboard.title")}
           </h2>
 
           <form onSubmit={handleAddFaq} className="space-y-6">
@@ -127,12 +128,12 @@ const FaqsDashboard: React.FC<FaqsDashboardProps> = ({ token }) => {
                 htmlFor="question"
                 className="block mb-2 font-semibold text-gray-300"
               >
-                Pregunta
+                {t("faqs-dashboard.question")}
               </label>
               <input
                 id="question"
                 type="text"
-                className="w-full rounded-md bg-gray-800 p-3 text-gray-200 border border-gray-700 focus:border-emerald-300 focus:outline-none transition"
+                className="w-full rounded-md bg-[#111111] p-3 text-gray-200 border border-[#7a5b26] focus:border-[#c9aa57] focus:outline-none transition"
                 value={question}
                 onChange={(e) => setQuestion(e.target.value)}
                 required
@@ -144,12 +145,12 @@ const FaqsDashboard: React.FC<FaqsDashboardProps> = ({ token }) => {
                 htmlFor="answer"
                 className="block mb-2 font-semibold text-gray-300"
               >
-                Respuesta
+                {t("faqs-dashboard.answer")}
               </label>
               <textarea
                 id="answer"
                 rows={4}
-                className="w-full rounded-md bg-gray-800 p-3 text-gray-200 border border-gray-700 focus:border-emerald-300 focus:outline-none transition resize-none"
+                className="w-full rounded-md bg-[#111111] p-3 text-gray-200 border border-[#7a5b26] focus:border-[#c9aa57] focus:outline-none transition resize-none"
                 value={answer}
                 onChange={(e) => setAnswer(e.target.value)}
                 required
@@ -159,94 +160,100 @@ const FaqsDashboard: React.FC<FaqsDashboardProps> = ({ token }) => {
             <div className="flex flex-col sm:flex-row gap-4">
               <div className="flex-1">
                 <label className="block mb-2 font-semibold text-gray-300">
-                  Idioma
+                  {t("faqs-dashboard.language.title")}
                 </label>
                 <select
-                  className="w-full rounded-md bg-gray-800 p-3 text-gray-200 border border-gray-700 focus:border-emerald-300"
+                  className="w-full rounded-md bg-[#111111] p-3 text-gray-200 border border-[#7a5b26] focus:border-[#c9aa57]"
                   value={language}
                   onChange={(e) => setLanguage(e.target.value)}
                   required
                 >
-                  <option value="ES">Español</option>
-                  <option value="EN">Inglés</option>
-                  <option value="PT">Portugués</option>
+                  <option value="ES"> {t("faqs-dashboard.language.es")}</option>
+                  <option value="EN">{t("faqs-dashboard.language.en")}</option>
+                  <option value="PT">{t("faqs-dashboard.language.pt")}</option>
                 </select>
               </div>
 
               <div className="flex-1">
                 <label className="block mb-2 font-semibold text-gray-300">
-                  Tipo
+                  {t("faqs-dashboard.type.title")}
                 </label>
                 <select
-                  className="w-full rounded-md bg-gray-800 p-3 text-gray-200 border border-gray-700 focus:border-emerald-300"
+                  className="w-full rounded-md bg-[#111111] p-3 text-gray-200 border border-[#7a5b26] focus:border-[#c9aa57]"
                   value={type}
                   onChange={(e) => setType(e.target.value as FaqType)}
                   required
                 >
-                  <option value={FaqType.SUPPORT}>Soporte</option>
-                  <option value={FaqType.SUBSCRIPTION}>Suscripción</option>
+                  <option value={FaqType.SUPPORT}>
+                    {t("faqs-dashboard.type.support")}
+                  </option>
+                  <option value={FaqType.SUBSCRIPTION}>
+                    {t("faqs-dashboard.type.subscription")}
+                  </option>
                 </select>
               </div>
             </div>
 
             <button
               type="submit"
-              className="w-full bg-indigo-500 hover:bg-indigo-600 font-semibold py-3 rounded shadow-md focus:ring-2 focus:ring-indigo-400 transition"
+              className="w-full bg-[#7a5b26] hover:bg-[#9c7b30] font-semibold py-3 rounded shadow-md focus:ring-2 focus:ring-[#c9aa57] transition"
             >
-              Agregar FAQ
+              {t("faqs-dashboard.btn.add-faq")}
             </button>
           </form>
         </section>
 
         {/* Listado */}
         <section
-          className="relative flex flex-col gap-6 w-full md:w-[700px] rounded-lg shadow-xl p-6 bg-gray-900 border border-transparent"
+          className="relative flex flex-col gap-6 w-full md:w-[700px] rounded-lg shadow-xl p-6 bg-[#1a1a1a] border border-[#7a5b26]"
           style={{
-            backgroundImage: "linear-gradient(#1f2937, #111827)",
-            borderImage: "linear-gradient(to right, #6366f1, #06b6d4)",
-            borderImageSlice: 1,
+            backgroundImage: "linear-gradient(#1a1a1a, #111111)",
           }}
         >
           <div className="mb-4 px-4 sm:px-6 pt-6 space-y-4">
             <div>
               <label className="block mb-2 font-semibold text-gray-300">
-                Filtrar FAQs por idioma
+                {t("faqs-dashboard.filter-faqs-type")}
               </label>
               <select
-                className="w-full sm:w-48 rounded-md bg-gray-800 p-3 text-gray-200 border border-gray-700"
+                className="w-full sm:w-48 rounded-md bg-[#111111] p-3 text-gray-200 border border-[#7a5b26]"
                 value={selectedLanguage}
                 onChange={(e) => setSelectedLanguage(e.target.value)}
               >
-                <option value="ES">Español</option>
-                <option value="EN">Inglés</option>
-                <option value="PT">Portugués</option>
+                <option value="ES">{t("faqs-dashboard.language.es")}</option>
+                <option value="EN">{t("faqs-dashboard.language.en")}</option>
+                <option value="PT">{t("faqs-dashboard.language.pt")}</option>
               </select>
             </div>
 
             <div>
               <label className="block mb-2 font-semibold text-gray-300">
-                Filtrar FAQs por tipo
+                {t("faqs-dashboard.filter-faqs-language")}
               </label>
               <select
-                className="w-full sm:w-48 rounded-md bg-gray-800 p-3 text-gray-200 border border-gray-700"
+                className="w-full sm:w-48 rounded-md bg-[#111111] p-3 text-gray-200 border border-[#7a5b26]"
                 value={selectedType}
                 onChange={(e) => setSelectedType(e.target.value as FaqType)}
               >
-                <option value={FaqType.SUPPORT}>Soporte</option>
-                <option value={FaqType.SUBSCRIPTION}>Suscripción</option>
+                <option value={FaqType.SUPPORT}>
+                  {t("faqs-dashboard.type.support")}
+                </option>
+                <option value={FaqType.SUBSCRIPTION}>
+                  {t("faqs-dashboard.type.subscription")}
+                </option>
               </select>
             </div>
           </div>
 
           <div className="px-4 sm:px-6 pb-6">
-            <div className="w-full rounded-lg shadow-lg p-6 bg-gray-800 max-h-[60vh] overflow-y-auto">
-              <h3 className="text-2xl font-semibold text-indigo-400 mb-4 tracking-wide">
+            <div className="w-full rounded-lg shadow-lg p-6 bg-[#111111] max-h-[60vh] overflow-y-auto">
+              <h3 className="text-2xl font-semibold text-[#c9aa57] mb-4 tracking-wide">
                 FAQs Filtradas
               </h3>
               {loading ? (
                 <div className="relative flex justify-center py-4">
                   <svg
-                    className="animate-spin h-10 w-10 text-purple-500"
+                    className="animate-spin h-10 w-10 text-[#7a5b26]"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                   >
@@ -268,17 +275,18 @@ const FaqsDashboard: React.FC<FaqsDashboardProps> = ({ token }) => {
                 </div>
               ) : filteredInfoFaqs.length === 0 ? (
                 <p className="text-gray-500">
-                  No hay FAQs disponibles con ese filtro.
+                  {t("faqs-dashboard.empty.title")}
                 </p>
               ) : (
                 <ul className="space-y-4">
                   {filteredInfoFaqs.map((faq, idx) => (
                     <li
                       key={idx}
-                      className="bg-gray-700 p-4 rounded-md shadow-sm border border-gray-700 w-full break-words"
+                      className="bg-[#1a1a1a] p-4 rounded-md shadow-sm border border-[#7a5b26] w-full break-words"
                     >
-                      <p className="text-sm text-indigo-300 mb-1 uppercase break-words whitespace-normal">
-                        Idioma: {faq.language} | Tipo: {faq.type}
+                      <p className="text-sm text-[#c9aa57] mb-1 uppercase break-words whitespace-normal">
+                        {t("faqs-dashboard.language-text")}: {faq.language} |{" "}
+                        {t("faqs-dashboard.type-text")}: {faq.type}
                       </p>
                       <p className="font-bold text-base text-gray-100 break-words whitespace-normal">
                         {faq.question}
@@ -288,9 +296,9 @@ const FaqsDashboard: React.FC<FaqsDashboardProps> = ({ token }) => {
                       </p>
                       <button
                         onClick={() => handleDelete(faq.id)}
-                        className="mt-2 px-3 py-1 bg-red-600 hover:bg-red-700 text-white text-sm rounded-md"
+                        className="mt-2 px-3 py-1 bg-red-700 hover:bg-red-800 text-white text-sm rounded-md"
                       >
-                        Eliminar
+                        {t("faqs-dashboard.btn.delete-faq")}
                       </button>
                     </li>
                   ))}

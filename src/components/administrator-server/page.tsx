@@ -94,7 +94,9 @@ const AdministratorServer = () => {
           <BankDashboard token={token} serverId={serverId} />
         )}
         {activeOption === "guilds" && <GuildsDashboard />}
-        {activeOption === "faqs" && token && <FaqsDashboard token={token} />}
+        {activeOption === "faqs" && token && (
+          <FaqsDashboard token={token} t={t} />
+        )}
 
         {activeOption === "news" && token && (
           <NewsAdministrator token={token} />
