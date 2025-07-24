@@ -61,7 +61,7 @@ const MultiCarousel: React.FC<MultiCarouselProps> = ({ t }) => {
         </h3>
       </div>
       {error ? (
-        <div className="flex items-center justify-center h-full mt-20">
+        <div className="flex items-center justify-center h-full mt-20 select-none">
           <LoadingSpinner />
         </div>
       ) : products.length === 0 ? (
@@ -80,7 +80,7 @@ const MultiCarousel: React.FC<MultiCarouselProps> = ({ t }) => {
         >
           {products.map((product) => (
             <div
-              className="flex flex-col m-4 rounded-lg overflow-hidden p-4 hover:bg-gray-600 transition-all"
+              className="flex flex-col m-4 rounded-lg overflow-hidden p-4 transition-all"
               key={product.id}
               onClick={() => handleSelectItem(product.reference_number)}
             >
@@ -116,7 +116,7 @@ const MultiCarousel: React.FC<MultiCarouselProps> = ({ t }) => {
                     ? `${product.disclaimer.slice(0, 30)}...`
                     : product.disclaimer}
                 </p>
-                <button className="w-full mt-8 bg-blue-900 text-white py-2 px-4 rounded hover:bg-blue-600 transition-all text-lg">
+                <button className="w-full mt-8 bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-400 text-white py-2 px-4   rounded-lg shadow-lg transition text-lg">
                   {t("home-products.carrousel-offert.btn")}
                 </button>
               </div>

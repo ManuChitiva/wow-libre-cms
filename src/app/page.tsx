@@ -1,7 +1,7 @@
 import Advertising from "@/components/home/banner";
 import Bidding from "@/components/home/bidding";
-import DownloadGame from "@/components/home/contribution";
-import ServerFeatures from "@/components/home/integration";
+import DownloadGame from "@/components/home/download-game";
+import ServerFeatures from "@/components/home/server-features";
 import Navbar from "@/components/home/navbar-home/navbar";
 import LatestNews from "@/components/home/news";
 import RealmsHome from "@/components/home/realms";
@@ -21,7 +21,6 @@ const Home = () => {
       <ServerFeatures />
       <Bidding />
       <DownloadGame />
-
       <Subscription />
     </>
   );

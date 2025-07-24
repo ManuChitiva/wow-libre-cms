@@ -8,7 +8,7 @@ const ServerFeatures = () => {
   const { t } = useTranslation();
 
   return (
-    <section className="bg-midnight mt-10 mb-16 rounded-xl  ">
+    <section className="bg-midnight mt-10 mb-16 rounded-xl ">
       <div className="gap-16 items-center py-12 px-6 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-20 lg:px-8 contenedor ">
         <div className="font-light sm:text-lg text-gray-500 ">
           <h2 className="mb-6 text-5xl font-extrabold text-white tracking-tight leading-tight title-server">
@@ -26,17 +26,17 @@ const ServerFeatures = () => {
           <div className="mt-8">
             <a
               href="/news"
-              className="inline-block px-8 py-3 text-xl font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg shadow-lg transition duration-300"
+              className="inline-block px-8 py-3 text-xl font-semibold text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 rounded-lg shadow-lg transition duration-300"
             >
               {t("features-server.btn.text")}
             </a>
           </div>
         </div>
-        <div className="grid grid-cols-1 gap-2 md:mt-0 mt-20  ">
+        <div className="grid grid-cols-1 gap-2 md:mt-0 mt-20 select-none">
           <img
             src={webProps.homeFeaturesImg}
             alt="features"
-            className="shadow shadow-teal-300 w-500% h-500 object-cover mx-auto rounded-full"
+            className=" shadow shadow-teal-300 w-500% h-500 object-cover mx-auto rounded-full hover:shadow-[0_0_25px_5px_#1abc9c] transition-shadow duration-300"
           />
         </div>
       </div>

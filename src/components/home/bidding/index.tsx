@@ -40,7 +40,7 @@ const Bidding = () => {
 
       <div className="flex flex-col md:flex-row gap-6">
         {/* OFERTA DEL DÍA */}
-        <div className="bg-gradient-to-b from-gray-800 via-gray-900 to-black rounded-xl p-6 w-full md:max-w-md h-auto md:h-[50rem] flex flex-col">
+        <div className="bg-gradient-to-b  bg-[#1a1a1a] border border-[#7a5b26] transition-shadow duration-300 hover:shadow-[0_0_25px_5px_#7a5b26]  rounded-xl p-6 w-full md:max-w-md h-auto md:h-[50rem] flex flex-col">
           <h3 className="text-2xl font-semibold text-white mb-4">
             {t("home-products.offer-day.title")}
           </h3>
@@ -84,7 +84,7 @@ const Bidding = () => {
                 <div className="mt-auto">
                   <button
                     onClick={() => handleSelectItem(products.reference_number)}
-                    className="w-full bg-indigo-700 hover:bg-indigo-500 text-white py-2 px-4 rounded text-lg transition-all"
+                    className="w-full bg-orange-500 border border-orange-600  text-white py-2 px-4 rounded text-lg transition-all"
                   >
                     {t("home-products.offer-day.btn.primary")}
                   </button>
@@ -98,7 +98,8 @@ const Bidding = () => {
                 {/* Botón abajo y ancho completo */}
                 <div className="mt-auto">
                   <Link href="/store" passHref>
-                    <button className="w-full bg-indigo-700 hover:bg-indigo-500 text-white py-2 px-4 rounded text-2xl transition-all">
+                    {" "}
+                    <button className="w-full bg-orange-500 border border-orange-600 focus:outline-none hover:bg-orange-600 focus:ring-4 focus:ring-orange-300 font-medium  dark:bg-orange-600 dark:text-white dark:border-orange-700 dark:hover:bg-orange-700 dark:hover:border-orange-700 dark:focus:ring-orange-800 text-white py-2 px-4 rounded text-2xl transition-all">
                       {t("home-products.offer-day.btn.alternative")}
                     </button>
                   </Link>
@@ -109,7 +110,7 @@ const Bidding = () => {
         </div>
 
         {/* CARRUSEL */}
-        <div className="bg-gradient-to-b from-slate-800 via-slate-900 to-gray-950 rounded-xl p-6 w-full h-auto md:h-[50rem]">
+        <div className="bg-gradient-to-br from-[#0b1218] via-[#1b2735] to-[#4a789f]  transition-shadow duration-300 hover:shadow-[0_0_25px_5px_#4a789f]  rounded-xl p-6 w-full h-auto md:h-[50rem]">
           <MultiCarousel t={t} />
         </div>
       </div>

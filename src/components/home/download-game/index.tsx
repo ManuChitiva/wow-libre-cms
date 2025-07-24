@@ -7,7 +7,8 @@ const DownloadGame = () => {
   return (
     <section
       className="rounded-3xl
- contenedor overflow-hidden bg-gradient-to-br from-[#0b1218] via-[#1b2735] to-[#4a789f] sm:grid sm:grid-cols-2 sm:items-center mt-20 mb-20"
+ contenedor overflow-hidden bg-gradient-to-br from-[#0b1218] via-[#1b2735] to-[#4a789f] hover:shadow-[0_0_25px_5px_#4a789f]
+ sm:grid sm:grid-cols-2 sm:items-center mt-20 mb-20"
     >
       <div className=" p-8 md:p-12 lg:px-16 lg:py-24">
         <div className="mx-auto max-w-xl text-center ltr:sm:text-left rtl:sm:text-right">
@@ -22,7 +23,7 @@ const DownloadGame = () => {
           <div className="mt-4 md:mt-8">
             <a
               href="/contributions"
-              className="inline-block px-9 py-6 text-xl font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-lg transition duration-300"
+              className="inline-block px-9 py-6 text-xl font-semibold text-white bg-indigo-500 hover:bg-indigo-600  rounded-lg shadow-lg transition duration-300"
             >
               {t("home-who-we-are.btn-text")}
             </a>
