@@ -61,6 +61,9 @@ const LatestNewsCarousel = () => {
 
   return (
     <div className="bg-midnight contenedor  mt-10 text-white px-4 py-6 sm:px-8">
+      <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 text-left pl-2 title-server">
+        Noticias y Actualizaciones
+      </h2>
       <Carousel
         showArrows={hasMultiple}
         infiniteLoop={hasMultiple}

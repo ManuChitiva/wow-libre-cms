@@ -176,7 +176,7 @@ const Navbar = () => {
           </svg>
         </div>
       ) : (
-        <div className="nav-ubication relative">
+        <div className="nav-ubication relative font-serif">
           <a
             className="cursor-pointer hover:text-gray-400 flex items-center"
             onClick={toggleLanguageDropdown}
@@ -199,7 +199,7 @@ const Navbar = () => {
           </a>
 
           {languageDropdown && (
-            <div className="language-dropdown">
+            <div className="language-dropdown font-serif">
               <ul>
                 {languages.map((lang) => (
                   <li onClick={() => changeLanguage(lang)}>
@@ -219,19 +219,19 @@ const Navbar = () => {
         } flex-col md:flex-row gap-4 md:gap-10 items-center absolute md:static bg-midnight md:bg-transparent w-full md:w-auto top-20 left-0 p-4 z-40`}
       >
         <nav className="category">
-          <Link className="category-link" href="/guild">
+          <Link className="category-link font-serif" href="/guild">
             {t("navbar.sections.position-one")}
           </Link>
-          <Link className="category-link" href="/news">
+          <Link className="category-link font-serif" href="/news">
             {t("navbar.sections.position-two")}
           </Link>
-          <Link className="category-link" href="/bank">
+          <Link className="category-link font-serif" href="/bank">
             {t("navbar.sections.position-three")}
           </Link>
-          <Link className="category-link" href="/store">
+          <Link className="category-link font-serif" href="/store">
             {t("navbar.sections.position-four")}
           </Link>
-          <Link className="category-link" href="/help">
+          <Link className="category-link font-serif" href="/help">
             {t("navbar.sections.position-five")}
           </Link>
         </nav>

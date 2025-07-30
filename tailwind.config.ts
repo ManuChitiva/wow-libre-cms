@@ -20,10 +20,15 @@ const config: Config = {
           "50%": { color: "#A26769" }, // Vino tinto suave
           "75%": { color: "#F5F5F5" }, // Blanco roto
         },
+        "border-glow": {
+          "0%, 100%": { borderColor: "transparent" },
+          "50%": { borderColor: "#6366f1" }, // Indigo-500
+        },
       },
       animation: {
         "color-cycle": "colorCycle 4s ease-in-out infinite",
         shine: "shine 1s ease-in-out",
+        "border-glow": "border-glow 3s linear infinite",
       },
       colors: {
         midnight: "#0B1218",

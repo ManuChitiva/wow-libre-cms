@@ -22,7 +22,7 @@ const Searcher: React.FC<Props> = ({ onSearch, placeHolder }) => {
   return (
     <form className="search-primary" onSubmit={handleSubmit}>
       <input
-        className="search-input text-2xl"
+        className="search-input text-2xl font-serif"
         type="text"
         placeholder={placeHolder}
         value={query}

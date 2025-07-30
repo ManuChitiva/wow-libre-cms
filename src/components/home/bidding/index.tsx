@@ -119,8 +119,25 @@ const Bidding = () => {
           </div>
         </div>
 
-        {/* CARRUSEL */}
-        <div className="bg-gradient-to-br from-[#0b1218] via-[#1b2735] to-[#4a789f]  transition-shadow duration-300 hover:shadow-[0_0_25px_5px_#4a789f]  rounded-xl p-6 w-full h-auto md:h-[50rem]">
+        <div
+          className="relative bg-gradient-to-br from-[#0c1018] via-[#1b2130] to-[#323864]
+    border border-[#5a8fff]/30
+    transition-shadow duration-300 
+    hover:shadow-[0_10px_25px_-5px_#5a8fff] 
+    rounded-xl p-6 w-full h-auto md:h-[50rem]"
+        >
+          {/* Chuzos (triángulos) en las esquinas */}
+          <span className="absolute -top-2 -left-2 w-0 h-0 border-t-[12px] border-t-transparent border-r-[12px] border-r-[#5a8fff]"></span>
+          <span className="absolute -top-2 -right-2 w-0 h-0 border-t-[12px] border-t-transparent border-l-[12px] border-l-[#5a8fff]"></span>
+          <span className="absolute -bottom-2 -left-2 w-0 h-0 border-b-[12px] border-b-transparent border-r-[12px] border-r-[#5a8fff]"></span>
+          <span className="absolute -bottom-2 -right-2 w-0 h-0 border-b-[12px] border-b-transparent border-l-[12px] border-l-[#5a8fff]"></span>
+
+          {/* Rombos centrados en el borde */}
+          {/* Superior */}
+          <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rotate-45 bg-[#5a8fff] border border-[#5a8fff] shadow-md"></span>
+          {/* Inferior */}
+          <span className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-3 h-3 rotate-45 bg-[#5a8fff] border border-[#5a8fff] shadow-md"></span>
+
           <MultiCarousel t={t} />
         </div>
       </div>

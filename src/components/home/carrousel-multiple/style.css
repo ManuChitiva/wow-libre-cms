@@ -7,3 +7,28 @@
   display: flex;
   flex-direction: column;
 }
+.border-animation {
+  background: linear-gradient(
+    90deg,
+    rgba(99, 102, 241, 0) 0%,
+    rgba(99, 102, 241, 0.5) 50%,
+    rgba(99, 102, 241, 0) 100%
+  );
+  background-size: 200% 200%;
+  border-radius: 0.5rem;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: destination-out;
+  padding: 2px;
+  animation: border-shine 3s linear infinite;
+}
+
+@keyframes border-shine {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
