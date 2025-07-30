@@ -108,7 +108,7 @@ const AdministratorServer = () => {
           <VotesDashboard token={token} user={user} />
         )}
         {activeOption === "products" && token && (
-          <ProductDashboard token={token} />
+          <ProductDashboard token={token} realmId={serverId} />
         )}
       </main>
     </div>

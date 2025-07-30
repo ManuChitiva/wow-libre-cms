@@ -1,6 +1,7 @@
-import { getAllProducts } from "@/api/products";
+import { allCategories, createCategory } from "@/api/productCategory";
+import { createProduct, getAllProducts } from "@/api/products";
+import { ProductCategoriesResponse } from "@/dto/response/ProductCategoriesResponse";
 import { ProductsDetailsDto } from "@/model/ProductsDetails";
-import { t } from "i18next";
 import { useState, ChangeEvent, FormEvent, useEffect } from "react";
 
 interface Product {
@@ -8,11 +9,10 @@ interface Product {
   name: string;
   description: string;
   price: string;
-  category: string;
+  category: number;
   disclaimer: string;
   discount: string;
   imageUrl: string;
-  realmId: string;
   language: string;
   tax: string;
   returnTax: string;
@@ -26,17 +26,17 @@ const PAGE_SIZE = 5;
 
 interface ProductsProps {
   token: string;
+  realmId: number;
 }
-const ProductDashboard: React.FC<ProductsProps> = ({ token }) => {
+const ProductDashboard: React.FC<ProductsProps> = ({ token, realmId }) => {
   const [product, setProduct] = useState<Omit<Product, "id">>({
     name: "",
     description: "",
     price: "",
-    category: "",
+    category: 0,
     disclaimer: "",
     discount: "",
     imageUrl: "",
-    realmId: "",
     language: "",
     tax: "",
     returnTax: "",
@@ -47,11 +47,11 @@ const ProductDashboard: React.FC<ProductsProps> = ({ token }) => {
   });
 
   const [products, setProducts] = useState<Product[]>([]);
-  const [categories, setCategories] = useState<string[]>([
-    "Electrónica",
-    "Ropa",
-    "Hogar",
-  ]);
+  const [categories, setCategories] = useState<ProductCategoriesResponse[]>([]);
+  const [newCategoryDescription, setNewCategoryDescription] = useState("");
+  const [categoryDescriptionId, setCategoryDescriptionId] = useState(0);
+
+  const [newCategoryDisclaimer, setNewCategoryDisclaimer] = useState("");
   const [nextId, setNextId] = useState(1);
   const [showForm, setShowForm] = useState(false);
   const [showNewCategoryInput, setShowNewCategoryInput] = useState(false);
@@ -61,6 +61,7 @@ const ProductDashboard: React.FC<ProductsProps> = ({ token }) => {
     products: [],
     total_products: 0,
   });
+
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
@@ -71,39 +72,45 @@ const ProductDashboard: React.FC<ProductsProps> = ({ token }) => {
     }));
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const newProduct: Product = {
-      id: nextId,
-      ...product,
-    };
-    setProducts((prev) => [...prev, newProduct]);
-    setNextId(nextId + 1);
-
-    setShowForm(false);
-    setShowNewCategoryInput(false);
-    setNewCategory("");
-    setCurrentPage(1);
-  };
-
   const handleDelete = (id: number) => {
     setProducts((prev) => prev.filter((p) => p.id !== id));
   };
 
-  const addCategory = () => {
-    if (newCategory.trim() !== "" && !categories.includes(newCategory.trim())) {
-      const cat = newCategory.trim();
-      setCategories((prev) => [...prev, cat]);
-      setProduct((prev) => ({
-        ...prev,
-        category: cat,
-      }));
+  const addCategory = async () => {
+    const trimmed = newCategory.trim();
+
+    if (trimmed === "") return;
+
+    try {
+      await createCategory(
+        token,
+        newCategory,
+        newCategoryDescription,
+        newCategoryDisclaimer
+      );
+
+      const updatedCategories = await allCategories(token);
+      setCategories(updatedCategories);
+      // Buscar la nueva categoría por nombre
+      const createdCategory = updatedCategories.find(
+        (cat) => cat.name === newCategory
+      );
+
+      if (createdCategory) {
+        setProduct((prev) => ({
+          ...prev,
+          category: createdCategory.id,
+        }));
+      }
+    } catch (error: any) {
+      console.error("Error al crear categoría:", error);
+      alert(`❌ Error al crear categoría: ${error.message}`);
     }
+
     setShowNewCategoryInput(false);
     setNewCategory("");
   };
 
-  const totalPages = Math.ceil(productsDb.total_products / PAGE_SIZE);
   const paginatedProducts = productsDb.products.slice(
     (currentPage - 1) * PAGE_SIZE,
     currentPage * PAGE_SIZE
@@ -112,15 +119,77 @@ const ProductDashboard: React.FC<ProductsProps> = ({ token }) => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const apiProducts = await getAllProducts(token);
+        const [apiProducts, categoryResponse] = await Promise.all([
+          getAllProducts(token),
+          allCategories(token),
+        ]);
+
         setProductsDb(apiProducts);
+        setCategories(categoryResponse);
       } catch (error) {
         console.error("Error al obtener productos:", error);
       }
     };
 
     fetchProducts();
-  }, []);
+  }, [token, realmId]);
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      const payload = {
+        name: product.name,
+        product_category_id: product.category,
+        disclaimer: product.disclaimer,
+        price: parseFloat(product.price),
+        discount: parseInt(product.discount),
+        description: product.description,
+        image_url: product.imageUrl,
+        realm_id: realmId,
+        language: product.language,
+        tax: product.tax,
+        return_tax: product.returnTax,
+        credit_points_value: parseInt(product.creditPointsValue),
+        credit_points_enabled: product.creditPointsEnabled,
+        packages: product.packages,
+      };
+
+      await createProduct(token, payload);
+
+      alert("Producto creado con éxito ✅");
+
+      // Resetear formulario si deseas
+      setProduct({
+        name: "",
+        description: "",
+        price: "",
+        category: 0,
+        disclaimer: "",
+        discount: "",
+        imageUrl: "",
+        language: "",
+        tax: "",
+        returnTax: "",
+        creditPointsValue: "",
+        creditPointsEnabled: false,
+        packages: [],
+        details: "",
+      });
+      setNextId(nextId + 1);
+      setShowForm(false);
+      setShowNewCategoryInput(false);
+      setNewCategory("");
+      setCurrentPage(1);
+
+      // Refrescar productos desde API
+      const refreshed = await getAllProducts(token);
+      setProductsDb(refreshed);
+    } catch (error: any) {
+      console.error("Error al crear producto:", error);
+      alert(`❌ Error al crear producto: ${error.message}`);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-950 text-gray-200 p-6 flex flex-col">
@@ -205,8 +274,8 @@ const ProductDashboard: React.FC<ProductsProps> = ({ token }) => {
                 >
                   <option value="">Selecciona una categoría</option>
                   {categories.map((cat) => (
-                    <option key={cat} value={cat}>
-                      {cat}
+                    <option key={cat.id} value={cat.id}>
+                      {cat.name}
                     </option>
                   ))}
                 </select>
@@ -219,13 +288,27 @@ const ProductDashboard: React.FC<ProductsProps> = ({ token }) => {
                 </button>
               </div>
               {showNewCategoryInput && (
-                <div className="mt-2 flex space-x-2">
+                <div className="mt-2 grid grid-cols-1 gap-3">
                   <input
                     type="text"
                     value={newCategory}
                     onChange={(e) => setNewCategory(e.target.value)}
-                    className="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="Nueva categoría"
+                    className="w-full p-3 rounded-lg bg-gray-800 border border-gray-700"
+                    placeholder="Nombre de categoría"
+                  />
+                  <input
+                    type="text"
+                    value={newCategoryDescription}
+                    onChange={(e) => setNewCategoryDescription(e.target.value)}
+                    className="w-full p-3 rounded-lg bg-gray-800 border border-gray-700"
+                    placeholder="Descripción"
+                  />
+                  <input
+                    type="text"
+                    value={newCategoryDisclaimer}
+                    onChange={(e) => setNewCategoryDisclaimer(e.target.value)}
+                    className="w-full p-3 rounded-lg bg-gray-800 border border-gray-700"
+                    placeholder="Disclaimer"
                   />
                   <button
                     type="button"

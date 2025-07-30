@@ -1,27 +1,36 @@
 import { BASE_URL_TRANSACTION } from "@/configs/configs";
 import { GenericResponseDto, InternalServerError } from "@/dto/generic";
-import { ProductRequestDto } from "@/dto/request/ProductRequestDto";
-import { ProductsDetailsDto } from "@/model/ProductsDetails";
+import { ProductCategoriesResponse } from "@/dto/response/ProductCategoriesResponse";
 import { v4 as uuidv4 } from "uuid";
 
-export const getAllProducts = async (
-  token: string
-): Promise<ProductsDetailsDto> => {
+export const createCategory = async (
+  token: string,
+  name: string,
+  description: string,
+  disclaimer: string
+): Promise<void> => {
   const transactionId = uuidv4();
 
   try {
-    const response = await fetch(`${BASE_URL_TRANSACTION}/api/products/all`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        transaction_id: transactionId,
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await fetch(
+      `${BASE_URL_TRANSACTION}/api/product-category`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          transaction_id: transactionId,
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          name,
+          description,
+          disclaimer,
+        }),
+      }
+    );
 
     if (response.ok && response.status === 200) {
-      const responseData: GenericResponseDto<ProductsDetailsDto> =
-        await response.json();
+      const responseData: GenericResponseDto<void> = await response.json();
       return responseData.data;
     } else {
       const genericResponse: GenericResponseDto<void> = await response.json();
@@ -46,25 +55,27 @@ export const getAllProducts = async (
   }
 };
 
-export const createProduct = async (
-  token: string,
-  request: ProductRequestDto
-): Promise<void> => {
+export const allCategories = async (
+  token: string
+): Promise<ProductCategoriesResponse[]> => {
   const transactionId = uuidv4();
 
   try {
-    const response = await fetch(`${BASE_URL_TRANSACTION}/api/products`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        transaction_id: transactionId,
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(request),
-    });
+    const response = await fetch(
+      `${BASE_URL_TRANSACTION}/api/product-category`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          transaction_id: transactionId,
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
     if (response.ok && response.status === 200) {
-      const responseData: GenericResponseDto<void> = await response.json();
+      const responseData: GenericResponseDto<ProductCategoriesResponse[]> =
+        await response.json();
       return responseData.data;
     } else {
       const genericResponse: GenericResponseDto<void> = await response.json();
