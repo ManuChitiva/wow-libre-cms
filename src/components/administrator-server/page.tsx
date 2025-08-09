@@ -103,11 +103,11 @@ const AdministratorServer = () => {
         {activeOption === "advertising" && token && (
           <BannersAdvertisingDashboard token={token} />
         )}
-        {activeOption === "votes" && token && (
-          <VotesDashboard token={token} user={user} />
-        )}
         {activeOption === "products" && token && (
           <ProductDashboard token={token} realmId={serverId} />
+        )}
+        {activeOption === "votes" && token && (
+          <VotesDashboard token={token} user={user} />
         )}
         {activeOption === "provider" && token && (
           <ProviderConfigs token={token} t={t} />

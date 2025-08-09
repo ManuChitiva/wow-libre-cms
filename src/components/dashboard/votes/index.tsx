@@ -134,85 +134,85 @@ const VotesDashboard: React.FC<VotingProps> = ({ token, user }) => {
   };
 
   return (
-    <div className="text-gray-200 flex flex-col items-center md:p-24 relative min-h-screen">
+    <div className="text-gray-300 flex flex-col items-center md:p-24 relative min-h-screen">
       <div
-        className="absolute inset-0 bg-cover bg-center opacity-60"
+        className="absolute inset-0 bg-cover bg-center opacity-40"
         style={{
           backgroundImage:
             "url('https://images4.alphacoders.com/620/thumb-1920-620388.jpg')",
         }}
       />
+      <div className="absolute inset-0 bg-black opacity-70" />
       <div className="w-full max-w-screen-xl mx-auto flex flex-col md:flex-row gap-10 relative z-10">
         {/* Formulario */}
         <section
           aria-label="Formulario para agregar votaciones"
-          className="relative rounded-lg shadow-xl p-8 w-full md:w-[600px] bg-gray-900 border border-transparent"
-          style={{
-            backgroundImage: "linear-gradient(#1f2937, #111827)",
-            borderImage: "linear-gradient(to right, #6366f1, #06b6d4)",
-            borderImageSlice: 1,
-          }}
+          className="relative rounded-lg shadow-xl p-8 w-full md:w-[600px] bg-[#1a1a1a] border border-[#7a5b26]"
         >
-          <h2 className="text-3xl font-extrabold text-indigo-400 mb-8 tracking-wide">
+          <h2 className="text-3xl font-extrabold text-[#EAC784] mb-8 tracking-wide">
             {editingId ? "Editar Plataforma" : "Administrador de Votaciones"}
           </h2>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label className="block mb-2 font-semibold text-gray-300">
+              <label className="block mb-2 font-semibold text-[#c2a25f]">
                 Nombre de la plataforma
               </label>
-              <input
-                type="text"
+              <select
                 name="name"
-                maxLength={90}
                 value={formData.name}
                 onChange={handleChange}
-                className="w-full rounded-md bg-gray-800 p-3 text-gray-200 border border-gray-700"
+                className="w-full rounded-md bg-[#2a2a2a] p-3 text-white border border-gray-700 focus:border-[#bfa35f] outline-none"
                 required
-              />
+              >
+                <option value="">Seleccionar página de votación</option>
+                <option value="TOPG">topg.org</option>
+              </select>
             </div>
 
             <div>
-              <label className="block mb-2 font-semibold text-gray-300">
+              <label className="block mb-2 font-semibold text-[#c2a25f]">
                 URL de votación
               </label>
               <input
                 type="url"
                 name="url"
                 maxLength={80}
+                placeholder="https://topg.org/es/servidores-de-wow-privados/server-674932-ynugt7ee9w68o6c-2#vote"
                 value={formData.url}
                 onChange={handleChange}
-                className="w-full rounded-md bg-gray-800 p-3 text-gray-200 border border-gray-700"
+                className="w-full rounded-md bg-[#2a2a2a] p-3 text-white border border-gray-700 focus:border-[#bfa35f] outline-none"
                 required
               />
             </div>
 
             <div>
-              <label className="block mb-2 font-semibold text-gray-300">
+              <label className="block mb-2 font-semibold text-[#c2a25f]">
                 IP
               </label>
               <input
                 type="text"
                 name="ip"
+                placeholder="Ip del webhook, dejar en blanco si no la conoce"
                 maxLength={80}
                 value={formData.ip}
                 onChange={handleChange}
-                className="w-full rounded-md bg-gray-800 p-3 text-gray-200 border border-gray-700"
+                className="w-full rounded-md bg-[#2a2a2a] p-3 text-white border border-gray-700 focus:border-[#bfa35f] outline-none"
               />
             </div>
 
             <div>
-              <label className="block mb-2 font-semibold text-gray-300">
+              <label className="block mb-2 font-semibold text-[#c2a25f]">
                 URL de la imagen
               </label>
               <input
                 type="url"
                 name="image"
+                placeholder="Url de la imagen a mostrar"
                 maxLength={80}
                 value={formData.image}
                 onChange={handleChange}
-                className="w-full rounded-md bg-gray-800 p-3 text-gray-200 border border-gray-700"
+                className="w-full rounded-md bg-[#2a2a2a] p-3 text-white border border-gray-700 focus:border-[#bfa35f] outline-none"
                 required
               />
             </div>
@@ -221,9 +221,9 @@ const VotesDashboard: React.FC<VotingProps> = ({ token, user }) => {
               type="submit"
               className={`w-full ${
                 editingId
-                  ? "bg-yellow-500 hover:bg-yellow-600"
-                  : "bg-indigo-500 hover:bg-indigo-600"
-              } font-semibold py-3 rounded shadow-md focus:ring-2 transition`}
+                  ? "bg-gradient-to-r from-[#e6b800] to-[#d4a017]"
+                  : "bg-transparent border border-[#ffcc33] text-[#ffcc33]"
+              } font-semibold py-3 rounded hover:bg-gradient-to-r hover:from-[#ffcc33]/20 hover:to-[#ffcc33]/10 transition`}
             >
               {editingId ? "Actualizar plataforma" : "Agregar plataforma"}
             </button>
@@ -231,20 +231,13 @@ const VotesDashboard: React.FC<VotingProps> = ({ token, user }) => {
         </section>
 
         {/* Lista de plataformas */}
-        <section
-          className="relative flex flex-col gap-6 w-full md:w-[700px] rounded-lg shadow-xl p-6 bg-gray-900 border border-transparent"
-          style={{
-            backgroundImage: "linear-gradient(#1f2937, #111827)",
-            borderImage: "linear-gradient(to right, #6366f1, #06b6d4)",
-            borderImageSlice: 1,
-          }}
-        >
-          <div className="w-full rounded-lg shadow-lg p-6 bg-gray-800 max-h-[60vh] overflow-y-auto">
-            <h3 className="text-2xl font-semibold text-indigo-400 mb-4 tracking-wide">
+        <section className="relative flex flex-col gap-6 w-full md:w-[700px] rounded-lg shadow-xl p-6 bg-[#1a1a1a] border border-[#7a5b26]">
+          <div className="w-full rounded-lg shadow-lg p-6 bg-[#2a2a2a] max-h-[60vh] overflow-y-auto">
+            <h3 className="text-2xl font-semibold text-[#EAC784] mb-4 tracking-wide">
               Plataformas integradas ({partners.length})
             </h3>
             {partners.length === 0 ? (
-              <p className="text-gray-500">
+              <p className="text-gray-400">
                 No hay plataformas registradas aún.
               </p>
             ) : (
@@ -252,28 +245,28 @@ const VotesDashboard: React.FC<VotingProps> = ({ token, user }) => {
                 {partners.map((partner) => (
                   <li
                     key={partner.id}
-                    className="bg-gray-800 p-4 rounded-md shadow-sm border border-gray-700 w-full break-words"
+                    className="bg-[#2a2a2a] p-4 rounded-md shadow-sm border border-gray-700 hover:bg-[#3a3a3a] hover:border-[#ffcc33] transition"
                   >
                     <img
                       src={partner.img_url}
                       alt={partner.name}
-                      className="w-80 h-80 object-cover rounded-full mb-2 mx-auto"
+                      className="w-80 h-80 object-cover rounded-full mb-2 mx-auto select-none"
                       loading="lazy"
                     />
-                    <p className="font-bold text-3xl text-center text-gray-100">
+                    <p className="font-bold text-3xl text-center text-[#EAC784]">
                       {partner.name}
                     </p>
 
                     <div className="flex justify-center gap-4 mt-4">
                       <button
                         onClick={() => handleEdit(partner)}
-                        className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded"
+                        className="bg-transparent border border-[#ffcc33] text-[#ffcc33] px-4 py-2 rounded hover:bg-gradient-to-r hover:from-[#ffcc33]/20 hover:to-[#ffcc33]/10 transition"
                       >
                         Editar
                       </button>
                       <button
                         onClick={() => handleDelete(partner.id)}
-                        className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded"
+                        className="bg-gradient-to-r from-[#7a1f1f] to-[#a52a2a] text-[#ffcc33] font-semibold px-6 py-3 rounded border border-[#a52a2a] hover:brightness-110 transition"
                       >
                         Eliminar
                       </button>

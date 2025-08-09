@@ -1,4 +1,4 @@
-import { getAmountWallet } from "@/api/wallet";
+import { getAmountWallet, getAmountWalletVoting } from "@/api/wallet";
 import { useUserContext } from "@/context/UserContext";
 import Cookies from "js-cookie";
 import Link from "next/link";
@@ -20,6 +20,8 @@ const NavbarAuthenticated = () => {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [walletAmount, setWalletAmount] = useState(0);
+  const [walletAmountVoting, setWalletAmountVoting] = useState(0);
+
   const token = Cookies.get("token");
 
   useEffect(() => {
@@ -37,13 +39,19 @@ const NavbarAuthenticated = () => {
   }
 
   const fetchWalletAmount = async () => {
-    if (user.logged_in && token) {
-      try {
-        const amount = await getAmountWallet(token);
-        setWalletAmount(amount);
-      } catch (error) {
-        setWalletAmount(0);
-      }
+    if (!user.logged_in || !token) return;
+
+    try {
+      const [amount, votes] = await Promise.all([
+        getAmountWallet(token),
+        getAmountWalletVoting(token),
+      ]);
+
+      setWalletAmount(amount);
+      setWalletAmountVoting(votes);
+    } catch (error) {
+      setWalletAmount(0);
+      setWalletAmountVoting(0);
     }
   };
 
@@ -66,7 +74,15 @@ const NavbarAuthenticated = () => {
     clearUserData();
     router.push("/");
   };
-
+  const formatNumber = (num: number) => {
+    if (num >= 1_000_000) {
+      return (num / 1_000_000).toFixed(1) + "M";
+    }
+    if (num >= 1_000) {
+      return (num / 1_000).toFixed(1) + "K";
+    }
+    return num.toString();
+  };
   return (
     <nav className="bg-midnight mt-10 ">
       <div className="mx-auto max-w-9xl px-2 sm:px-6 lg:px-8">
@@ -213,41 +229,62 @@ const NavbarAuthenticated = () => {
             <div className="relative z-50">
               {/* Botón del saldo */}
               <div
-                className="hidden sm:flex cursor-pointer mr-4 max-w-[80vw] overflow-hidden text-ellipsis whitespace-nowrap items-center bg-gray-800 text-white px-4 py-2 rounded-full transition-all duration-300 hover:bg-gray-700"
+                className="hidden sm:flex cursor-pointer mr-4 max-w-[80vw] overflow-hidden text-ellipsis whitespace-nowrap items-center 
+             relative bg-gradient-to-br from-[#0c1018] via-[#1b2130] to-[#3b47a4]
+             border border-[#5a8fff]/30
+             transition-shadow duration-300 
+             hover:shadow-[0_0_15px_2px_#5a8fff] 
+             rounded-full px-4 py-2"
                 onClick={toggleWalletModal}
               >
-                <span className="text-lg font-semibold truncate">
-                  {" "}
+                <span className="text-lg font-semibold truncate text-white">
                   {t("navbar_authenticated.wallet.title")}
                 </span>
               </div>
 
               {/* Contenido desplegable */}
               <div
-                className={`absolute left-0 mt-2 w-48 bg-gray-800 text-white rounded-lg shadow-lg p-4 transition-all duration-300 ${
+                className={`absolute left-0 mt-2 w-56 bg-gradient-to-b from-[#1a1a1a] to-[#2a2a2a] text-[#EAC784] rounded-xl shadow-[0_0_15px_2px_rgba(255,204,51,0.3)] border border-[#7a5b26] p-4 transition-all duration-300 ${
                   isOpen
                     ? "opacity-100 translate-y-0 scale-100"
                     : "opacity-0 scale-95 pointer-events-none"
                 }`}
               >
-                <p className="text-sm">
+                <p className="text-xl font-bold tracking-wide border-b border-[#7a5b26] pb-1 mb-2">
                   {t("navbar_authenticated.wallet.detail")}
                 </p>
-                <p className="text-lg font-bold">
-                  {t("navbar_authenticated.wallet.available")} {walletAmount}
+
+                <p className="text-lg font-semibold">
+                  💰 {t("navbar_authenticated.wallet.available")}{" "}
+                  <span className="text-[#ffcc33]">
+                    {formatNumber(walletAmount)}
+                  </span>
                 </p>
+
+                <p className="text-lg font-semibold">
+                  🗳️ {t("navbar_authenticated.wallet.votes")}{" "}
+                  <span className="text-[#ffcc33]">
+                    {formatNumber(walletAmountVoting)}
+                  </span>
+                </p>
+
                 <a
                   href="/store"
-                  className="mt-2 w-full bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded-md"
+                  className="mt-3 block text-center bg-gradient-to-r from-[#B88917] to-[#6B4E16] hover:from-[#d49e17eb] hover:to-[#8B5E2F] text-white font-bold py-2 px-4 rounded-md border border-[#5A3E15] shadow-md hover:shadow-lg transition"
                 >
-                  {t("navbar_authenticated.wallet.recharge")}
+                  ⚡ {t("navbar_authenticated.wallet.recharge")}
                 </a>
               </div>
             </div>
 
             <button
               type="button"
-              className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+              className="relative rounded-full bg-gradient-to-br from-[#0c1018] via-[#1b2130] to-[#323864]
+             border border-[#5a8fff]/30 
+             p-1 text-gray-400 hover:text-white 
+             hover:shadow-[0_0_10px_2px_#5a8fff]
+             transition-all duration-300
+             focus:outline-none focus:ring-2 focus:ring-[#5a8fff] focus:ring-offset-2 focus:ring-offset-gray-900"
             >
               <span className="absolute -inset-1.5"></span>
               <svg
@@ -295,16 +332,19 @@ const NavbarAuthenticated = () => {
               </div>
               {isUserMenuOpen && (
                 <div
-                  className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                  className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md 
+               bg-gradient-to-br from-[#0c1018] via-[#1b2130] to-[#323864] 
+               shadow-lg ring-1 ring-[#5a8fff]/30 focus:outline-none 
+               border border-[#5a8fff]/20"
                   role="menu"
                   aria-orientation="vertical"
                   aria-labelledby="user-menu-button"
                 >
                   {loggin ? (
-                    <div className="hover:text-blue-500">
+                    <div>
                       <Link
                         href="/profile"
-                        className="block px-4 py-3 text-base text-gray-700"
+                        className="block px-4 py-3 text-base text-gray-200 hover:bg-[#5a8fff]/20 hover:text-white transition"
                         role="menuitem"
                         id="user-menu-item-0"
                       >
@@ -312,7 +352,7 @@ const NavbarAuthenticated = () => {
                       </Link>
                       <Link
                         href="/accounts"
-                        className="block px-4 py-3 text-base text-gray-700"
+                        className="block px-4 py-3 text-base text-gray-200 hover:bg-[#5a8fff]/20 hover:text-white transition"
                         role="menuitem"
                         id="user-menu-item-0"
                       >
@@ -320,7 +360,7 @@ const NavbarAuthenticated = () => {
                       </Link>
                       <Link
                         href="/realms"
-                        className="block px-4 py-3 text-base text-gray-700"
+                        className="block px-4 py-3 text-base text-gray-200 hover:bg-[#5a8fff]/20 hover:text-white transition"
                         role="menuitem"
                         id="user-menu-item-0"
                       >
@@ -328,7 +368,7 @@ const NavbarAuthenticated = () => {
                       </Link>
                       <a
                         href="#"
-                        className="block px-4 py-3 text-base text-gray-700"
+                        className="block px-4 py-3 text-base text-gray-200 hover:bg-red-500/20 hover:text-red-400 transition"
                         role="menuitem"
                         id="user-menu-item-2"
                         onClick={handleLogout}
@@ -342,7 +382,7 @@ const NavbarAuthenticated = () => {
                     <div>
                       <Link
                         href="/login"
-                        className="block px-4 py-3 text-base text-gray-700 hover:bg-blue-100"
+                        className="block px-4 py-3 text-base text-gray-200 hover:bg-[#5a8fff]/20 hover:text-white transition"
                         role="menuitem"
                         id="user-menu-item-0"
                       >
@@ -350,7 +390,7 @@ const NavbarAuthenticated = () => {
                       </Link>
                       <Link
                         href="/register"
-                        className="block px-4 py-3 text-base text-gray-700 hover:bg-blue-100"
+                        className="block px-4 py-3 text-base text-gray-200 hover:bg-[#5a8fff]/20 hover:text-white transition"
                         role="menuitem"
                         id="user-menu-item-0"
                       >

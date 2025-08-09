@@ -43,6 +43,7 @@
         },
         "wallet": {
             "title": "Puntos",
+            "votes": "Votos",
             "recharge": "Recargar",
             "detail": "Detalle del saldo:",
             "available": "Saldo: $"

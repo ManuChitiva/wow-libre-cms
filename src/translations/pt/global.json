@@ -43,7 +43,10 @@
         },
         "wallet": {
             "title": "Pontos",
-            "recharge": "Recarregar"
+            "votes": "Votos",
+            "recharge": "Recarregar",
+            "detail": "Detalhes do saldo:",
+            "available": "Saldo: $"
         }
     },
     "navbar-minimalist": {

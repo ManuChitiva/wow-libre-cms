@@ -43,7 +43,10 @@
         },
         "wallet": {
             "title": "Points",
-            "recharge": "Recharge"
+            "votes": "Votes",
+            "recharge": "Recharge",
+            "detail": "Balance details:",
+            "available": "Balance: $"
         }
     },
     "navbar-minimalist": {
