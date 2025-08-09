@@ -1204,5 +1204,79 @@
             "primary": "Promover"
         },
         "description": "Aumente a visibilidade do seu reino e atraia mais jogadores."
+    },
+    "faqs-dashboard": {
+        "title": "Gerenciador de Perguntas Frequentes (FAQs)",
+        "question": "Pergunta",
+        "answer": "Resposta",
+        "type-text": "Tipo",
+        "language-text": "Idioma",
+        "filter-faqs-type": "Filtrar FAQs por tipo",
+        "filter-faqs-language": "Filtrar FAQs por idioma",
+        "empty": {
+            "title": "Não há FAQs disponíveis com este filtro."
+        },
+        "language": {
+            "title": "Idioma",
+            "select": "Selecione um idioma",
+            "es": "Espanhol",
+            "en": "Inglês",
+            "pt": "Português"
+        },
+        "type": {
+            "title": "Tipo",
+            "support": "Suporte",
+            "subscription": "Assinatura"
+        },
+        "btn": {
+            "add-faq": "Adicionar FAQ",
+            "delete-faq": "Remover FAQ"
+        }
+    },
+    "providers-dashboard": {
+        "success": {
+            "title": "Sucesso!",
+            "created": "O provedor foi adicionado com sucesso.",
+            "deleted": "O provedor foi removido com sucesso."
+        },
+        "errors": {
+            "title": "Erro",
+            "warning": "Aviso",
+            "delete": "Houve um problema ao tentar excluir o provedor.",
+            "fetch": "Não foi possível obter os provedores.",
+            "create": "Não foi possível salvar o provedor.",
+            "long-value": "O valor inserido é muito longo. Máximo de 100 caracteres permitidos."
+        },
+        "confirm": {
+            "title": "Tem certeza?",
+            "text": "Isso excluirá o provedor permanentemente.",
+            "confirm": "Sim, excluir",
+            "cancel": "Cancelar"
+        },
+        "form": {
+            "select-service": "Selecione o tipo de serviço",
+            "select-placeholder": "Escolha uma categoria",
+            "metrics-option": "Serviço de métricas",
+            "mails-option": "Serviço de e-mails",
+            "host-label": "Endereço do host",
+            "host-placeholder": "ex: https://api.exemplo.com",
+            "client-label": "Identificador do cliente",
+            "client-placeholder": "E-mail ou ID do cliente",
+            "secret-label": "Chave secreta do provedor",
+            "secret-placeholder": "Chave fornecida pelo serviço",
+            "submit-button": "Salvar provedor"
+        },
+        "list": {
+            "title": "Provedores atualmente configurados",
+            "empty": "Você ainda não vinculou nenhum provedor",
+            "type": "Tipo",
+            "host": "URL do host",
+            "client": "Cliente",
+            "remove": "Remover provedor"
+        },
+        "info": {
+            "instruction": "Insira os dados necessários para conectar sua conta a um provedor de serviços externo",
+            "form-title": "Configurar novo provedor"
+        }
     }
 }
