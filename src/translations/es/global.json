@@ -1234,5 +1234,51 @@
             "add-faq": "Agregar FAQ",
             "delete-faq": "Eliminar FAQ"
         }
+    },
+    "providers-dashboard": {
+        "success": {
+            "title": "¡Éxito!",
+            "created": "El proveedor fue agregado exitosamente.",
+            "deleted": "El proveedor fue eliminado correctamente."
+        },
+        "errors": {
+            "title": "Error",
+            "warning": "Advertencia",
+            "delete": "Hubo un problema al intentar eliminar el proveedor.",
+            "fetch": "No se pudieron obtener los proveedores.",
+            "create": "No se pudo guardar el proveedor.",
+            "long-value": "El valor ingresado es demasiado largo. Máximo 100 caracteres permitidos."
+        },
+        "confirm": {
+            "title": "¿Estás seguro?",
+            "text": "Esto eliminará el proveedor permanentemente.",
+            "confirm": "Sí, eliminar",
+            "cancel": "Cancelar"
+        },
+        "form": {
+            "select-service": "Selecciona el tipo de servicio",
+            "select-placeholder": "Elige una categoría",
+            "metrics-option": "Servicio de métricas",
+            "mails-option": "Servicio de correos",
+            "host-label": "Dirección del host",
+            "host-placeholder": "Ej: https://api.ejemplo.com",
+            "client-label": "Identificador del cliente",
+            "client-placeholder": "Correo o ID del cliente",
+            "secret-label": "Clave secreta del proveedor",
+            "secret-placeholder": "Clave proporcionada por el servicio",
+            "submit-button": "Guardar proveedor"
+        },
+        "list": {
+            "title": "Proveedores actualmente configurados",
+            "empty": "Aún no has vinculado ningún proveedor",
+            "type": "Tipo",
+            "host": "URL del host",
+            "client": "Cliente",
+            "remove": "Quitar proveedor"
+        },
+        "info": {
+            "instruction": "Ingresa los datos necesarios para conectar tu cuenta con un proveedor de servicios externo",
+            "form-title": "Configurar nuevo proveedor"
+        }
     }
 }

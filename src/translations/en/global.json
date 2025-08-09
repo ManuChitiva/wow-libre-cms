@@ -1206,7 +1206,77 @@
         "description": "Increase your realm’s visibility and attract more players."
     },
     "faqs-dashboard": {
-        "title": "FAQs Dashboard",
-        "description": "Manage your frequently asked questions."
+        "title": "Frequently Asked Questions (FAQs) Manager",
+        "question": "Question",
+        "answer": "Answer",
+        "type-text": "Type",
+        "language-text": "Language",
+        "filter-faqs-type": "Filter FAQs by type",
+        "filter-faqs-language": "Filter FAQs by language",
+        "empty": {
+            "title": "No FAQs available with this filter."
+        },
+        "language": {
+            "title": "Language",
+            "select": "Select a language",
+            "es": "Spanish",
+            "en": "English",
+            "pt": "Portuguese"
+        },
+        "type": {
+            "title": "Type",
+            "support": "Support",
+            "subscription": "Subscription"
+        },
+        "btn": {
+            "add-faq": "Add FAQ",
+            "delete-faq": "Delete FAQ"
+        }
+    },
+    "providers-dashboard": {
+        "success": {
+            "title": "Success!",
+            "created": "The provider was added successfully.",
+            "deleted": "The provider was deleted successfully."
+        },
+        "errors": {
+            "title": "Error",
+            "warning": "Warning",
+            "delete": "There was a problem trying to delete the provider.",
+            "fetch": "Could not fetch the providers.",
+            "create": "Could not save the provider.",
+            "long-value": "The input is too long. Maximum 100 characters allowed."
+        },
+        "confirm": {
+            "title": "Are you sure?",
+            "text": "This will permanently delete the provider.",
+            "confirm": "Yes, delete",
+            "cancel": "Cancel"
+        },
+        "form": {
+            "select-service": "Select the type of service",
+            "select-placeholder": "Choose a category",
+            "metrics-option": "Metrics service",
+            "mails-option": "Email service",
+            "host-label": "Host address",
+            "host-placeholder": "e.g., https://api.example.com",
+            "client-label": "Client identifier",
+            "client-placeholder": "Client email or ID",
+            "secret-label": "Provider secret key",
+            "secret-placeholder": "Key provided by the service",
+            "submit-button": "Save provider"
+        },
+        "list": {
+            "title": "Currently configured providers",
+            "empty": "You haven't linked any provider yet",
+            "type": "Type",
+            "host": "Host URL",
+            "client": "Client",
+            "remove": "Remove provider"
+        },
+        "info": {
+            "instruction": "Enter the required data to connect your account with an external service provider",
+            "form-title": "Configure new provider"
+        }
     }
 }

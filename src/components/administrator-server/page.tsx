@@ -19,6 +19,7 @@ import ProductDashboard from "../dashboard/products";
 import TeleportDashboard from "../dashboard/teleport";
 import VotesDashboard from "../dashboard/votes";
 import SettingsServer from "../settings";
+import ProviderConfigs from "../dashboard/providers";
 
 const AdministratorServer = () => {
   const [activeOption, setActiveOption] = useState("dashboard");
@@ -79,7 +80,6 @@ const AdministratorServer = () => {
         {activeOption === "adversing" && token && (
           <AdvertisingRealmForm token={token} realmId={serverId} t={t} />
         )}
-
         {/* HOME DASHBOARD */}
         {activeOption === "dashboard" && token && serverId && (
           <HomeDashboard token={token} serverId={serverId} />
@@ -97,7 +97,6 @@ const AdministratorServer = () => {
         {activeOption === "faqs" && token && (
           <FaqsDashboard token={token} t={t} />
         )}
-
         {activeOption === "news" && token && (
           <NewsAdministrator token={token} />
         )}
@@ -109,6 +108,9 @@ const AdministratorServer = () => {
         )}
         {activeOption === "products" && token && (
           <ProductDashboard token={token} realmId={serverId} />
+        )}
+        {activeOption === "provider" && token && (
+          <ProviderConfigs token={token} t={t} />
         )}
       </main>
     </div>
