@@ -1281,5 +1281,111 @@
             "instruction": "Ingresa los datos necesarios para conectar tu cuenta con un proveedor de servicios externo",
             "form-title": "Configurar nuevo proveedor"
         }
+    },
+    "votes-dashboard": {
+        "title-create": "Administrador de Votaciones",
+        "title-edit": "Editar Plataforma",
+        "form": {
+            "name-label": "Nombre de la plataforma",
+            "name-placeholder": "Seleccionar página de votación",
+            "url-label": "URL de votación",
+            "url-placeholder": "https://topg.org/es/servidores-de-wow-privados/server-674932-ynugt7ee9w68o6c-2#vote",
+            "ip-label": "IP",
+            "ip-placeholder": "Ip del webhook, dejar en blanco si no la conoce",
+            "image-label": "URL de la imagen",
+            "image-placeholder": "Url de la imagen a mostrar",
+            "submit-create": "Agregar plataforma",
+            "submit-edit": "Actualizar plataforma"
+        },
+        "list": {
+            "title": "Plataformas integradas",
+            "empty": "No hay plataformas registradas aún.",
+            "edit": "Editar",
+            "delete": "Eliminar"
+        },
+        "alerts": {
+            "fetch-error-title": "Oops...",
+            "fetch-error-message": "Error al obtener plataformas.",
+            "save-error-title": "Error",
+            "save-error-message": "No se pudo guardar la plataforma.",
+            "delete-confirm-title": "¿Estás seguro?",
+            "delete-confirm-message": "Esta acción no se puede deshacer.",
+            "delete-confirm-yes": "Sí, eliminar",
+            "delete-confirm-no": "Cancelar",
+            "delete-error-title": "Error",
+            "delete-error-message": "No se pudo eliminar la plataforma."
+        }
+    },
+    "banners-dashboard": {
+        "title": "Administración de Banners",
+        "subtitle": "(Crea y gestiona banners publicitarios)",
+        "warning": "⚠️ Solo se pueden crear hasta <strong>5 banners</strong> por tipo en cada idioma.",
+        "form": {
+            "title": "Crear Nuevo Banner",
+            "media-label": "Media URL *",
+            "media-placeholder": "https://...",
+            "alt-label": "Texto alternativo (alt) *",
+            "alt-placeholder": "Descripción accesible",
+            "language-label": "Idioma *",
+            "language-placeholder": "Selecciona un idioma",
+            "type-label": "Tipo *",
+            "type-image": "Imagen",
+            "type-video": "Video",
+            "label-label": "Mensaje para el video (opcional)",
+            "label-placeholder": "Ej: Banner Promoción",
+            "submit": "Agregar Banner"
+        },
+        "list": {
+            "filter-label": "Filtrar por idioma",
+            "title": "Banners Registrados",
+            "empty": "No hay banners cargados todavía."
+        },
+        "alerts": {
+            "create-success-title": "¡Éxito!",
+            "create-success-message": "Banner creado correctamente.",
+            "create-error-title": "Oops...",
+            "create-error-message": "Error al crear el banner.",
+            "delete-success-title": "¡Éxito!",
+            "delete-success-message": "Banner eliminado correctamente.",
+            "delete-error-title": "Oops...",
+            "delete-error-message": "Error al eliminar el banner."
+        },
+        "buttons": {
+            "accept": "Aceptar",
+            "delete": "Eliminar"
+        }
+    },
+    "payment-dashboard": {
+        "info": {
+            "instruction": "Configura y administra los métodos de pago disponibles en tu sistema."
+        },
+        "form": {
+            "title": "Agregar método de pago",
+            "select-method": "Seleccionar medio de pago",
+            "select-placeholder": "Seleccione una opción",
+            "submit-button": "Guardar"
+        },
+        "success": {
+            "title": "Operación exitosa",
+            "created": "El método de pago fue creado correctamente.",
+            "deleted": "El método de pago fue eliminado correctamente."
+        },
+        "errors": {
+            "title": "Error",
+            "delete": "No se pudo eliminar el método de pago.",
+            "warning": "Advertencia",
+            "long-value": "El valor ingresado es demasiado largo."
+        },
+        "confirm": {
+            "title": "¿Estás seguro?",
+            "text": "Esta acción eliminará el método de pago de forma permanente.",
+            "confirm": "Sí, eliminar",
+            "cancel": "Cancelar"
+        },
+        "list": {
+            "title": "Métodos de pago configurados",
+            "empty": "No hay métodos de pago configurados todavía.",
+            "remove": "Eliminar"
+        }
     }
 }

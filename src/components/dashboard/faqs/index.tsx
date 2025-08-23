@@ -282,21 +282,24 @@ const FaqsDashboard: React.FC<FaqsDashboardProps> = ({ token, t }) => {
                   {filteredInfoFaqs.map((faq, idx) => (
                     <li
                       key={idx}
-                      className="bg-[#1a1a1a] p-4 rounded-md shadow-sm border border-[#7a5b26] w-full break-words"
+                      className="bg-[#1a1a1a] p-5 rounded-lg shadow-md border border-[#7a5b26] w-full break-words"
                     >
-                      <p className="text-sm text-[#c9aa57] mb-1 uppercase break-words whitespace-normal">
+                      <p className="text-sm font-semibold text-[#c2a25f] mb-2 uppercase tracking-wide break-words whitespace-normal">
                         {t("faqs-dashboard.language-text")}: {faq.language} |{" "}
                         {t("faqs-dashboard.type-text")}: {faq.type}
                       </p>
-                      <p className="font-bold text-base text-gray-100 break-words whitespace-normal">
+
+                      <p className="font-bold text-lg text-[#EAC784] leading-snug mb-2 break-words whitespace-normal">
                         {faq.question}
                       </p>
-                      <p className="text-gray-300 text-base break-words whitespace-normal mb-2">
+
+                      <p className="text-base text-gray-300 leading-relaxed break-words whitespace-normal mb-4">
                         {faq.answer}
                       </p>
+
                       <button
                         onClick={() => handleDelete(faq.id)}
-                        className="mt-2 px-3 py-1 bg-red-700 hover:bg-red-800 text-white text-sm rounded-md"
+                        className="mt-2 px-4 py-2 bg-gradient-to-r from-[#7a1f1f] to-[#a52a2a] text-[#ffcc33] font-medium rounded-md border border-[#a52a2a] hover:brightness-110 transition"
                       >
                         {t("faqs-dashboard.btn.delete-faq")}
                       </button>

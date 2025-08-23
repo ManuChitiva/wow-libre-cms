@@ -1,5 +1,5 @@
 "use client";
-import { getAccounts, sendMail } from "@/api/account";
+import { accountInactive, getAccounts, sendMail } from "@/api/account";
 import NavbarAuthenticated from "@/components/navbar-authenticated";
 import LoadingSpinner from "@/components/utilities/loading-spinner";
 import { useUserContext } from "@/context/UserContext";
@@ -18,7 +18,7 @@ import "./style.css";
 const LimitAccountRegister = 10;
 const accountsPerPage = 5;
 
-const Page = () => {
+const AccountsGame = () => {
   const router = useRouter();
   const { user, clearUserData } = useUserContext();
   const token = Cookies.get("token");
@@ -34,6 +34,13 @@ const Page = () => {
   const [searchServer, setSearchServer] = useState<string>("");
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
   const [isUserShowWelcome, setUserShowWelcome] = useState<boolean>(false);
+  const [selectedIds, setSelectedIds] = useState<number[]>([]);
+
+  const handleCheckboxChange = (id: number, checked: boolean) => {
+    setSelectedIds((prev) =>
+      checked ? [...prev, id] : prev.filter((item) => item !== id)
+    );
+  };
 
   useAuth(t("errors.message.expiration-session"));
 
@@ -87,7 +94,7 @@ const Page = () => {
       }
     };
     fetchData();
-  }, [currentPage, searchUsername, searchServer]);
+  }, [currentPage, searchUsername, searchServer, selectedIds]);
 
   if (redirect) {
     router.push("/");
@@ -179,6 +186,44 @@ const Page = () => {
     navigator.clipboard.writeText(textToCopy);
   };
 
+  const handleInactiveAccounts = async () => {
+    if (selectedIds.length === 0) {
+      Swal.fire({
+        icon: "warning",
+        title: "Oops...",
+        text: "Debes seleccionar al menos una cuenta",
+      });
+      return;
+    }
+    if (!token) {
+      setRedirect(true);
+      return;
+    }
+
+    try {
+      await accountInactive(token, selectedIds);
+      Swal.fire({
+        icon: "success",
+        title: "Cuentas inactivadas",
+        text: "Las cuentas seleccionadas fueron inactivadas correctamente.",
+      });
+
+      setAccounts((prev) =>
+        prev.map((acc) =>
+          selectedIds.includes(acc.id) ? { ...acc, status: false } : acc
+        )
+      );
+
+      setSelectedIds([]);
+    } catch (error: any) {
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: error.message,
+      });
+    }
+  };
+
   if (loading) {
     return (
       <div className="contenedor mx-auto  h-screen-md">
@@ -214,8 +259,8 @@ const Page = () => {
           {t("account.service-available.txt-message")}
         </p>
       </div>
-      {hasAccount ? (
-        <div className="relative shadow-md sm:rounded-lg pt-16">
+      {hasAccount && !user.pending_validation ? (
+        <div className="relative  p-10">
           <div className="flex items-center justify-between flex-wrap md:flex-nowrap space-y-4 md:space-y-0 pb-4 bg-white dark:bg-midnight">
             {/* Botón de acción alineado a la izquierda */}
             <div className="relative inline-block text-left ml-2">
@@ -272,9 +317,18 @@ const Page = () => {
                 <div className="py-1">
                   <a
                     href="#"
+                    onClick={handleInactiveAccounts}
                     className="block text-lg px-4 py-2  text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                   >
                     {t("account.with-accounts.txt-delete-account")}
+                  </a>
+                </div>
+                <div className="py-1">
+                  <a
+                    href="#"
+                    className="block text-lg px-4 py-2  text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                  >
+                    Vincular cuenta de juego
                   </a>
                 </div>
               </div>
@@ -384,6 +438,10 @@ const Page = () => {
                         <input
                           id={`checkbox-table-search-${row.id}`}
                           type="checkbox"
+                          checked={selectedIds.includes(row.id)}
+                          onChange={(e) =>
+                            handleCheckboxChange(row.id, e.target.checked)
+                          }
                           className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                         />
                         <label
@@ -546,4 +604,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default AccountsGame;

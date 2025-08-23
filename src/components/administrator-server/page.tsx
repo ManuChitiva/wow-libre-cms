@@ -20,6 +20,7 @@ import TeleportDashboard from "../dashboard/teleport";
 import VotesDashboard from "../dashboard/votes";
 import SettingsServer from "../settings";
 import ProviderConfigs from "../dashboard/providers";
+import PaymentMethodsDashboard from "../dashboard/paymentMethods";
 
 const AdministratorServer = () => {
   const [activeOption, setActiveOption] = useState("dashboard");
@@ -84,8 +85,8 @@ const AdministratorServer = () => {
         {activeOption === "dashboard" && token && serverId && (
           <HomeDashboard token={token} serverId={serverId} />
         )}
-        {activeOption === "users" && token && serverId && (
-          <UsersDashboard token={token} serverId={serverId} />
+        {activeOption === "products" && token && (
+          <ProductDashboard token={token} realmId={serverId} />
         )}
         {activeOption === "settings" && token && serverId && (
           <SettingsServer token={token} serverId={serverId} />
@@ -94,23 +95,26 @@ const AdministratorServer = () => {
           <BankDashboard token={token} serverId={serverId} />
         )}
         {activeOption === "guilds" && <GuildsDashboard />}
-        {activeOption === "faqs" && token && (
-          <FaqsDashboard token={token} t={t} />
-        )}
         {activeOption === "news" && token && (
           <NewsAdministrator token={token} />
         )}
-        {activeOption === "advertising" && token && (
-          <BannersAdvertisingDashboard token={token} />
+        {activeOption === "users" && token && serverId && (
+          <UsersDashboard token={token} serverId={serverId} />
         )}
-        {activeOption === "products" && token && (
-          <ProductDashboard token={token} realmId={serverId} />
+        {activeOption === "faqs" && token && (
+          <FaqsDashboard token={token} t={t} />
+        )}
+        {activeOption === "advertising" && token && (
+          <BannersAdvertisingDashboard token={token} t={t} />
         )}
         {activeOption === "votes" && token && (
-          <VotesDashboard token={token} user={user} />
+          <VotesDashboard token={token} t={t} />
         )}
         {activeOption === "provider" && token && (
           <ProviderConfigs token={token} t={t} />
+        )}
+        {activeOption === "paymentMethods" && token && (
+          <PaymentMethodsDashboard token={token} t={t} />
         )}
       </main>
     </div>

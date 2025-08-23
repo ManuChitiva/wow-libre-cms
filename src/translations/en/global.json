@@ -1281,5 +1281,111 @@
             "instruction": "Enter the required data to connect your account with an external service provider",
             "form-title": "Configure new provider"
         }
+    },
+    "votes-dashboard": {
+        "title-create": "Voting Manager",
+        "title-edit": "Edit Platform",
+        "form": {
+            "name-label": "Platform Name",
+            "name-placeholder": "Select voting page",
+            "url-label": "Voting URL",
+            "url-placeholder": "https://topg.org/en/private-wow-servers/server-674932-ynugt7ee9w68o6c-2#vote",
+            "ip-label": "IP",
+            "ip-placeholder": "Webhook IP, leave blank if unknown",
+            "image-label": "Image URL",
+            "image-placeholder": "URL of the image to display",
+            "submit-create": "Add platform",
+            "submit-edit": "Update platform"
+        },
+        "list": {
+            "title": "Integrated platforms",
+            "empty": "No platforms registered yet.",
+            "edit": "Edit",
+            "delete": "Delete"
+        },
+        "alerts": {
+            "fetch-error-title": "Oops...",
+            "fetch-error-message": "Error fetching platforms.",
+            "save-error-title": "Error",
+            "save-error-message": "Could not save platform.",
+            "delete-confirm-title": "Are you sure?",
+            "delete-confirm-message": "This action cannot be undone.",
+            "delete-confirm-yes": "Yes, delete",
+            "delete-confirm-no": "Cancel",
+            "delete-error-title": "Error",
+            "delete-error-message": "Could not delete platform."
+        }
+    },
+    "banners-dashboard": {
+        "title": "Banner Management",
+        "subtitle": "(Create and manage advertising banners)",
+        "warning": "⚠️ You can only create up to <strong>5 banners</strong> per type in each language.",
+        "form": {
+            "title": "Create New Banner",
+            "media-label": "Media URL *",
+            "media-placeholder": "https://...",
+            "alt-label": "Alternative text (alt) *",
+            "alt-placeholder": "Accessible description",
+            "language-label": "Language *",
+            "language-placeholder": "Select a language",
+            "type-label": "Type *",
+            "type-image": "Image",
+            "type-video": "Video",
+            "label-label": "Message for video (optional)",
+            "label-placeholder": "E.g.: Promotion Banner",
+            "submit": "Add Banner"
+        },
+        "list": {
+            "filter-label": "Filter by language",
+            "title": "Registered Banners",
+            "empty": "No banners uploaded yet."
+        },
+        "alerts": {
+            "create-success-title": "Success!",
+            "create-success-message": "Banner created successfully.",
+            "create-error-title": "Oops...",
+            "create-error-message": "Error creating banner.",
+            "delete-success-title": "Success!",
+            "delete-success-message": "Banner deleted successfully.",
+            "delete-error-title": "Oops...",
+            "delete-error-message": "Error deleting banner."
+        },
+        "buttons": {
+            "accept": "Accept",
+            "delete": "Delete"
+        }
+    },
+    "payment-dashboard": {
+        "info": {
+            "instruction": "Set up and manage the available payment methods in your system."
+        },
+        "form": {
+            "title": "Add payment method",
+            "select-method": "Select payment method",
+            "select-placeholder": "Choose an option",
+            "submit-button": "Save"
+        },
+        "success": {
+            "title": "Operation successful",
+            "created": "The payment method was created successfully.",
+            "deleted": "The payment method was deleted successfully."
+        },
+        "errors": {
+            "title": "Error",
+            "delete": "The payment method could not be deleted.",
+            "warning": "Warning",
+            "long-value": "The entered value is too long."
+        },
+        "confirm": {
+            "title": "Are you sure?",
+            "text": "This action will permanently delete the payment method.",
+            "confirm": "Yes, delete",
+            "cancel": "Cancel"
+        },
+        "list": {
+            "title": "Configured payment methods",
+            "empty": "No payment methods have been configured yet.",
+            "remove": "Remove"
+        }
     }
 }

@@ -245,3 +245,45 @@ export const sendMail = async (
     }
   }
 };
+
+export const accountInactive = async (
+  jwt: string,
+  ids: number[]
+): Promise<GenericResponseDto<void>> => {
+  const transactionId = uuidv4();
+  try {
+    const response = await fetch(`${BASE_URL_CORE}/api/account/game/inactive`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + jwt,
+        transaction_id: transactionId,
+      },
+      body: JSON.stringify(ids),
+    });
+
+    if (response.ok && response.status === 200) {
+      const responseData = await response.json();
+      return responseData.data;
+    } else {
+      const genericResponse: GenericResponseDto<void> = await response.json();
+      throw new InternalServerError(
+        `${genericResponse.message}`,
+        genericResponse.code,
+        transactionId
+      );
+    }
+  } catch (error: any) {
+    if (error instanceof TypeError && error.message === "Failed to fetch") {
+      throw new Error(`Please try again later, services are not available.`);
+    } else if (error instanceof InternalServerError) {
+      throw error;
+    } else if (error instanceof Error) {
+      throw error;
+    } else {
+      throw new Error(
+        `Unknown error occurred - TransactionId: ${transactionId}`
+      );
+    }
+  }
+};

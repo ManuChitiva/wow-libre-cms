@@ -6,6 +6,7 @@ const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
 }) => {
   const [selectedOption, setSelectedOption] = useState<string>("");
   const router = useRouter();
+  const [openDashboard, setOpenDashboard] = useState(false);
 
   const handleMenuClick = (menu: string) => {
     setSelectedOption(menu);
@@ -18,7 +19,14 @@ const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
   };
 
   return (
-    <aside className="ml-[-100%] fixed z-10 top-0 pb-3 px-6 w-full flex flex-col justify-between h-screen border-r bg-black transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%]">
+    <aside
+      className="ml-[-100%] fixed z-10 top-0 pb-3 px-6 
+  w-full flex flex-col justify-between h-screen 
+  border-r bg-black transition duration-300 
+  md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%] 
+  overflow-y-auto scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-900"
+    >
+      {" "}
       <div>
         <div className="mt-8 text-center">
           <img
@@ -291,36 +299,6 @@ const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
               </span>
             </a>
           </li>
-          {/* FAQs */}
-          <li>
-            <a
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                handleMenuClick("faqs");
-              }}
-              className={`relative px-4 py-3 flex items-center space-x-4 rounded-xl transition-all duration-300 select-none
-              ${
-                selectedOption === "faqs"
-                  ? "bg-gradient-to-r from-[#1a1a1a] to-[#2b2b2b] shadow-[0_0_12px_2px_#e18132] text-[#e18132]"
-                  : "text-white hover:bg-gradient-to-r hover:from-[#2a2a2a] hover:to-[#1a1a1a] hover:text-[#e18132]"
-              }`}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path
-                  className="fill-current text-gray-200 group-hover:text-cyan-300"
-                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 17a1.25 1.25 0 110-2.5A1.25 1.25 0 0112 19zm1-4h-2v-.5c0-1.1.9-2 2-2 .55 0 1-.45 1-1s-.45-1-1-1a1 1 0 00-1 1H9c0-1.66 1.34-3 3-3s3 1.34 3 3c0 1.3-.84 2.4-2 2.82V15z"
-                />
-              </svg>
-
-              <span className="group-hover:text-blue-400 text-white">Faqs</span>
-            </a>
-          </li>
 
           {/* Bank */}
           <li>
@@ -390,6 +368,36 @@ const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
               <span className="group-hover:text-blue-400 text-white">
                 Usuarios
               </span>
+            </a>
+          </li>
+          {/* FAQs */}
+          <li>
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                handleMenuClick("faqs");
+              }}
+              className={`relative px-4 py-3 flex items-center space-x-4 rounded-xl transition-all duration-300 select-none
+              ${
+                selectedOption === "faqs"
+                  ? "bg-gradient-to-r from-[#1a1a1a] to-[#2b2b2b] shadow-[0_0_12px_2px_#e18132] text-[#e18132]"
+                  : "text-white hover:bg-gradient-to-r hover:from-[#2a2a2a] hover:to-[#1a1a1a] hover:text-[#e18132]"
+              }`}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  className="fill-current text-gray-200 group-hover:text-cyan-300"
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 17a1.25 1.25 0 110-2.5A1.25 1.25 0 0112 19zm1-4h-2v-.5c0-1.1.9-2 2-2 .55 0 1-.45 1-1s-.45-1-1-1a1 1 0 00-1 1H9c0-1.66 1.34-3 3-3s3 1.34 3 3c0 1.3-.84 2.4-2 2.82V15z"
+                />
+              </svg>
+
+              <span className="group-hover:text-blue-400 text-white">Faqs</span>
             </a>
           </li>
           {/* Advertising */}
@@ -465,22 +473,72 @@ const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
               </span>
             </a>
           </li>
-
           {/* Dashboard */}
+          <li>
+            <button
+              onClick={() => setOpenDashboard(!openDashboard)}
+              className={`relative w-full px-4 py-3 flex items-center justify-between rounded-xl transition-all duration-300
+            ${
+              openDashboard
+                ? "bg-gradient-to-r from-[#1a1a1a] to-[#2b2b2b] text-[#e18132] shadow-[0_0_12px_2px_#e18132]"
+                : "text-white hover:bg-gradient-to-r hover:from-[#2a2a2a] hover:to-[#1a1a1a] hover:text-[#e18132]"
+            }`}
+            >
+              <div className="flex items-center space-x-4">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M12 12c2.21 0 4-1.79 4-4S14.21 4 12 4 8 5.79 8 8s1.79 4 4 4zM12 14c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                </svg>
+                <span>Payment Methods</span>
+              </div>
+              <span>{openDashboard ? "▲" : "▼"}</span>
+            </button>
+
+            {/* Submenú */}
+            {openDashboard && (
+              <ul className="ml-6 mt-2 space-y-1">
+                {/* Payment Methods */}
+                <li>
+                  <a
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleMenuClick("paymentMethods");
+                    }}
+                    className={`block px-4 py-2 rounded-lg transition-all
+                  ${
+                    selectedOption === "paymentMethods"
+                      ? "bg-[#2b2b2b] text-[#e18132]"
+                      : "text-gray-300 hover:bg-[#1a1a1a] hover:text-[#e18132]"
+                  }`}
+                  >
+                    Pay U
+                  </a>
+                </li>
+
+                {/* Aquí puedes seguir metiendo más subopciones si quieres */}
+              </ul>
+            )}
+          </li>
+
+          {/* Proveedores (se queda fuera del dashboard) */}
           <li>
             <a
               href="#"
-              aria-label="provider"
               onClick={(e) => {
                 e.preventDefault();
                 handleMenuClick("provider");
               }}
-              className={`relative px-4 py-3 flex items-center space-x-4 rounded-xl transition-all duration-300 select-none
-              ${
-                selectedOption === "provider"
-                  ? "bg-gradient-to-r from-[#1a1a1a] to-[#2b2b2b] shadow-[0_0_12px_2px_#e18132] text-[#e18132]"
-                  : "text-white hover:bg-gradient-to-r hover:from-[#2a2a2a] hover:to-[#1a1a1a] hover:text-[#e18132]"
-              }`}
+              className={`relative px-4 py-3 flex items-center space-x-4 rounded-xl transition-all duration-300
+            ${
+              selectedOption === "provider"
+                ? "bg-gradient-to-r from-[#1a1a1a] to-[#2b2b2b] shadow-[0_0_12px_2px_#e18132] text-[#e18132]"
+                : "text-white hover:bg-gradient-to-r hover:from-[#2a2a2a] hover:to-[#1a1a1a] hover:text-[#e18132]"
+            }`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -488,24 +546,14 @@ const Sidebar: React.FC<{ onOptionChange: (option: string) => void }> = ({
                 viewBox="0 0 24 24"
                 fill="currentColor"
               >
-                <path
-                  className="fill-current text-gray-200 group-hover:text-cyan-300"
-                  d="M12 12c2.21 0 4-1.79 4-4S14.21 4 12 4 8 5.79 8 8s1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
-                />
-                <path
-                  className="fill-current text-gray-200 group-hover:text-cyan-600"
-                  d="M19 3h-4v2h4v4h2V5a2 2 0 00-2-2zm-4 14v2h4a2 2 0 002-2v-4h-2v4h-4z"
-                />
+                <path d="M12 12c2.21 0 4-1.79 4-4S14.21 4 12 4 8 5.79 8 8s1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                <path d="M19 3h-4v2h4v4h2V5a2 2 0 00-2-2zm-4 14v2h4a2 2 0 002-2v-4h-2v4h-4z" />
               </svg>
-
-              <span className="-mr-1 font-medium text-gray-200">
-                Provedores
-              </span>
+              <span>Proveedores</span>
             </a>
           </li>
         </ul>
       </div>
-
       <div className="px-6 -mx-6 pt-4 flex justify-between items-center border-t">
         <button className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group">
           <svg
