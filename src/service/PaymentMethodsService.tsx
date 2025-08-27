@@ -1,4 +1,8 @@
-import { getPaymentMethodsGateway } from "@/api/payment_methods";
+import {
+  createPaymentMethodGateway,
+  deletePaymentMethodGateway,
+  getPaymentMethodsGateway,
+} from "@/api/payment_methods";
 import { PaymentMethodsGatewayReponse } from "@/dto/response/PaymentMethodsResponse";
 import { PaymentMethod } from "@/model/PaymentMethod";
 
@@ -16,4 +20,20 @@ export const getPaymentMethodAvailable = async (
 ): Promise<PaymentMethod[]> => {
   const responseDto = await getPaymentMethodsGateway(token);
   return responseDto.map(mapToNotificationProvider);
+};
+
+export const createPaymentMethod = async (
+  token: string,
+  paymentType: string,
+  name: string,
+  credentials: Record<string, any>
+): Promise<void> => {
+  await createPaymentMethodGateway(token, paymentType, name, credentials);
+};
+
+export const deletePaymentMethod = async (
+  token: string,
+  paymentTypeId: number
+): Promise<void> => {
+  await deletePaymentMethodGateway(token, paymentTypeId);
 };

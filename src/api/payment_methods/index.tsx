@@ -44,3 +44,97 @@ export const getPaymentMethodsGateway = async (
     }
   }
 };
+
+export const createPaymentMethodGateway = async (
+  token: string,
+  paymentType: string,
+  name: string,
+  credentials: Record<string, any>
+): Promise<void> => {
+  const transactionId = uuidv4();
+
+  try {
+    const response = await fetch(`${BASE_URL_TRANSACTION}/api/payment-method`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        transaction_id: transactionId,
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify({
+        payment_type: paymentType,
+        name,
+        credentials,
+      }),
+    });
+
+    if (response.ok && response.status === 200) {
+      const responseData: GenericResponseDto<void> = await response.json();
+      return responseData.data;
+    } else {
+      const genericResponse: GenericResponseDto<void> = await response.json();
+      throw new InternalServerError(
+        `${genericResponse.message}`,
+        response.status,
+        transactionId
+      );
+    }
+  } catch (error: any) {
+    if (error instanceof TypeError && error.message === "Failed to fetch") {
+      throw new Error(`Please try again later, services are not available.`);
+    } else if (error instanceof InternalServerError) {
+      throw error;
+    } else if (error instanceof Error) {
+      throw error;
+    } else {
+      throw new Error(
+        `Unknown error occurred - TransactionId: ${transactionId}`
+      );
+    }
+  }
+};
+
+export const deletePaymentMethodGateway = async (
+  token: string,
+  paymentTypeId: number
+): Promise<void> => {
+  const transactionId = uuidv4();
+
+  try {
+    const response = await fetch(
+      `${BASE_URL_TRANSACTION}/api/payment-method/${paymentTypeId}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          transaction_id: transactionId,
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
+
+    if (response.ok && response.status === 200) {
+      const responseData: GenericResponseDto<void> = await response.json();
+      return responseData.data;
+    } else {
+      const genericResponse: GenericResponseDto<void> = await response.json();
+      throw new InternalServerError(
+        `${genericResponse.message}`,
+        response.status,
+        transactionId
+      );
+    }
+  } catch (error: any) {
+    if (error instanceof TypeError && error.message === "Failed to fetch") {
+      throw new Error(`Please try again later, services are not available.`);
+    } else if (error instanceof InternalServerError) {
+      throw error;
+    } else if (error instanceof Error) {
+      throw error;
+    } else {
+      throw new Error(
+        `Unknown error occurred - TransactionId: ${transactionId}`
+      );
+    }
+  }
+};

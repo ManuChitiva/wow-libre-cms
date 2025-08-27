@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import LoadingSpinnerCentral from "@/components/utilities/loading-spinner-v2";
 import { PaymentMethod } from "@/model/PaymentMethod";
-import { getPaymentMethodAvailable } from "@/service/PaymentMethodsService";
+import {
+  createPaymentMethod,
+  deletePaymentMethod,
+  getPaymentMethodAvailable,
+} from "@/service/PaymentMethodsService";
 
 interface PaymentMethodsDashboardProps {
   token: string;
@@ -43,7 +47,7 @@ const PaymentMethodsDashboard: React.FC<PaymentMethodsDashboardProps> = ({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      // await createPaymentMethod(type, form, token);
+      await createPaymentMethod(token, type, type, form);
       await fetchData();
       Swal.fire({
         icon: "success",
@@ -53,7 +57,11 @@ const PaymentMethodsDashboard: React.FC<PaymentMethodsDashboardProps> = ({
       setForm({});
       setType("");
     } catch (error: any) {
-      Swal.fire({ icon: "error", title: "Error", text: error.message });
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: error.message,
+      });
     }
   };
 
@@ -69,7 +77,7 @@ const PaymentMethodsDashboard: React.FC<PaymentMethodsDashboardProps> = ({
 
     if (confirm.isConfirmed) {
       try {
-        //await deletePaymentMethod(id, token);
+        await deletePaymentMethod(token, id);
         await fetchData();
         Swal.fire({
           icon: "success",
@@ -95,54 +103,63 @@ const PaymentMethodsDashboard: React.FC<PaymentMethodsDashboardProps> = ({
             name="host"
             value={form.host || ""}
             onChange={handleChange}
+            placeholder="Ingrese el host de PayU"
           />
           <InputField
             label="API Key"
             name="apiKey"
             value={form.apiKey || ""}
             onChange={handleChange}
+            placeholder="Ingrese su API Key"
           />
           <InputField
             label="API Login"
             name="apiLogin"
             value={form.apiLogin || ""}
             onChange={handleChange}
+            placeholder="Ingrese su API Login"
           />
           <InputField
             label="Key Public"
             name="keyPublic"
             value={form.keyPublic || ""}
             onChange={handleChange}
+            placeholder="Ingrese su Key Public"
           />
           <InputField
             label="Merchant ID"
             name="merchantId"
             value={form.merchantId || ""}
             onChange={handleChange}
+            placeholder="Ingrese su Merchant ID"
           />
           <InputField
             label="Account ID"
             name="accountId"
             value={form.accountId || ""}
             onChange={handleChange}
+            placeholder="Ingrese su Account ID"
           />
           <InputField
             label="Success URL"
             name="successUrl"
             value={form.successUrl || ""}
             onChange={handleChange}
+            placeholder="Ingrese su Success URL"
           />
           <InputField
             label="Cancel URL"
             name="cancelUrl"
             value={form.cancelUrl || ""}
             onChange={handleChange}
+            placeholder="Ingrese su Cancel URL"
           />
           <InputField
             label="Webhook URL"
             name="webhookUrl"
             value={form.webhookUrl || ""}
             onChange={handleChange}
+            placeholder="Ingrese su Webhook URL"
           />
         </>
       );
@@ -155,30 +172,35 @@ const PaymentMethodsDashboard: React.FC<PaymentMethodsDashboardProps> = ({
             name="apiSecret"
             value={form.apiSecret || ""}
             onChange={handleChange}
+            placeholder="Ingrese su API Secret"
           />
           <InputField
             label="API Public"
             name="apiPublic"
             value={form.apiPublic || ""}
             onChange={handleChange}
+            placeholder="Ingrese su API Public"
           />
           <InputField
             label="Success URL"
             name="successUrl"
             value={form.successUrl || ""}
             onChange={handleChange}
+            placeholder="Ingrese su Success URL"
           />
           <InputField
             label="Cancel URL"
             name="cancelUrl"
             value={form.cancelUrl || ""}
             onChange={handleChange}
+            placeholder="Ingrese su Cancel URL"
           />
           <InputField
             label="Webhook URL"
             name="webhookUrl"
             value={form.webhookUrl || ""}
             onChange={handleChange}
+            placeholder="Ingrese su Webhook URL"
           />
         </>
       );
@@ -298,11 +320,13 @@ const InputField = ({
   name,
   value,
   onChange,
+  placeholder,
 }: {
   label: string;
   name: string;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  placeholder?: string;
 }) => (
   <div className="flex flex-col">
     <label className="mb-1 font-semibold text-[#c2a25f] md:text-2xl">
@@ -313,6 +337,7 @@ const InputField = ({
       name={name}
       value={value}
       onChange={onChange}
+      placeholder={placeholder}
       required
       className="p-3 rounded-md bg-[#2a2a2a] border border-gray-700 focus:border-[#bfa35f] outline-none md:text-2xl"
     />
